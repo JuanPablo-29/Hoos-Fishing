@@ -1,3 +1,43 @@
 [gd_scene format=3 uid="uid://dwk4clahdqy1c"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainGame" type="Node"]
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="LevelRoot" type="Node2D" parent="World"]
+
+[node name="EntityRoot" type="Node2D" parent="World"]
+
+[node name="EffectRoot" type="Node2D" parent="World"]
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="HudRoot" type="Control" parent="HudLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseRoot" type="Control" parent="PauseLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+
+[node name="TransitonRoot" type="Control" parent="TransitionLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugRoot" type="Control" parent="DebugLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
