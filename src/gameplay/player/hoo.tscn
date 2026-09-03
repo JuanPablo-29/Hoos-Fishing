@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3t74xir3luqf"]
+
+[ext_resource type="Script" uid="uid://bwoloisp2i71q" path="res://src/gameplay/player/hoo.gd" id="1_bvoaa"]
+[ext_resource type="Texture2D" uid="uid://b0rhvli2w5afe" path="res://icon.svg" id="2_deuev"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4xcp8"]
+radius = 26.0
+height = 148.0
+
+[node name="Hoo" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_bvoaa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.4138461, 0.6666667)
+shape = SubResource("CapsuleShape2D_4xcp8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5681143, 0.70755386)
+texture = ExtResource("2_deuev")
