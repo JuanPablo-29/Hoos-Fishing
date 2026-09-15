@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="FishingRod" format=3 uid="uid://cdcopcdatybew"]
 
-[ext_resource type="Script" uid="uid://bwo7sma6ssudx" path="res://src/gameplay/fishing/rods/fishing_rod.gd" id="1_5fvxe"]
+[ext_resource type="Script" uid="uid://bwo7sma6ssudx" path="res://src/gameplay/fishing/rods/fishing_rod.gd" id="1_8df35"]
 
 [resource]
-script = ExtResource("1_5fvxe")
+script = ExtResource("1_8df35")
 rod_name = "Papa New Toy"
+purchase_price = 250
 max_fish_rarity = 1
 catch_speed_multiplier = 1.15
 metadata/_custom_type_script = "uid://bwo7sma6ssudx"

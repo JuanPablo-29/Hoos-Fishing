@@ -24,3 +24,12 @@ func _ready() -> void:
 	print("Bluegill: ", advanced_rod.can_catch(bluegill))
 	print("Bass: ", advanced_rod.can_catch(bass))
 	print("Golden Trout: ", advanced_rod.can_catch(golden_trout))
+	
+	
+	print("\nCatch Speed Test:")
+	var base_time: float = 10.0
+
+	print("Base Catch Time: ", base_time, " seconds")
+	print("Basic Rod: ", basic_rod.get_adjusted_catch_time(base_time), " seconds")
+	print("Improved Rod: ", improved_rod.get_adjusted_catch_time(base_time), " seconds")
+	print("Advanced Rod: ", advanced_rod.get_adjusted_catch_time(base_time), " seconds")
