@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishingRod" format=3 uid="uid://cdd0qsmg5eyn1"]
+
+[ext_resource type="Script" uid="uid://bwo7sma6ssudx" path="res://src/gameplay/fishing/rods/fishing_rod.gd" id="1_ie241"]
+
+[resource]
+script = ExtResource("1_ie241")
+rod_name = "The Claw 3000"
+max_fish_rarity = 2
+catch_speed_multiplier = 1.3
+metadata/_custom_type_script = "uid://bwo7sma6ssudx"

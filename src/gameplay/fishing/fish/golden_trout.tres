@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Fish" format=3 uid="uid://cwnjdyl5hso3i"]
+
+[ext_resource type="Script" uid="uid://cdfjcdaflaq26" path="res://src/gameplay/fishing/fish/fish.gd" id="1_5lu68"]
+
+[resource]
+script = ExtResource("1_5lu68")
+fish_name = "Golden Trout"
+rarity = 2
+sell_value = 100
+catch_difficulty = 3.0
+metadata/_custom_type_script = "uid://cdfjcdaflaq26"

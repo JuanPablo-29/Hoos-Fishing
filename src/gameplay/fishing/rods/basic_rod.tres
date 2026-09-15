@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FishingRod" format=3 uid="uid://b4p57trssidlr"]
+
+[ext_resource type="Script" uid="uid://bwo7sma6ssudx" path="res://src/gameplay/fishing/rods/fishing_rod.gd" id="1_8xi6e"]
+
+[resource]
+script = ExtResource("1_8xi6e")
+rod_name = "Old Reliable"
+metadata/_custom_type_script = "uid://bwo7sma6ssudx"
