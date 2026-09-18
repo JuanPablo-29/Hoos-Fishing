@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dwk4clahdqy1c"]
+
+[ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
+
+[node name="MainGame" type="Node" unique_id=1319835424]
+
+[node name="Systems" type="Node" parent="." unique_id=912474039]
+
+[node name="World" type="Node2D" parent="." unique_id=680325787]
+
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=292401214]
+
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=116449528]
+
+[node name="EffectRoot" type="Node2D" parent="World" unique_id=278787309]
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=507942276]
+
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=1448044221]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1384741688]
+
+[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=1080832072]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1809707464]
+
+[node name="TransitonRoot" type="Control" parent="TransitionLayer" unique_id=1560153587]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1586983554]
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=117972790]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hoo" parent="." unique_id=442130460 instance=ExtResource("1_hat22")]
+position = Vector2(-2, -1)
