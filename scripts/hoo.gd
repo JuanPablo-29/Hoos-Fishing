@@ -4,7 +4,7 @@ var direction : Vector2
 
 func _physics_process(delta) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
-	direction.y = Input.get_axis("move_up", "move_down")
+	#direction.y = Input.get_axis("move_up", "move_down")
 	
 	if direction:
 		velocity = direction * speed

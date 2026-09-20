@@ -19,6 +19,13 @@ run/main_scene="uid://dwk4clahdqy1c"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
+[display]
+
+window/size/viewport_width=384
+window/size/viewport_height=216
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 move_left={
