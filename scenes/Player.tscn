@@ -18,6 +18,7 @@ scale = Vector2(1.4138461, 0.6666667)
 shape = SubResource("CapsuleShape2D_4xcp8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940006229]
-position = Vector2(-2, -3)
-scale = Vector2(0.5681143, 0.70755386)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_deuev")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=255873783]
