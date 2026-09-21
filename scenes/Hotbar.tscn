@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://fswxs08lxfc6"]
+
+[node name="Hotbar" type="Control" unique_id=1301476650]
+layout_mode = 3
+anchor_right = 0.73200005
+anchor_bottom = 0.5
+offset_left = 298.0
+offset_top = 192.0
+offset_right = 557.912
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HotbarPanel" type="PanelContainer" parent="." unique_id=210676308]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slots" type="HBoxContainer" parent="HotbarPanel" unique_id=1577980335]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="Slot0" type="Button" parent="HotbarPanel/Slots" unique_id=953659170]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "0"
+
+[node name="Slot1" type="Button" parent="HotbarPanel/Slots" unique_id=1782181432]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "1"
+
+[node name="Slot2" type="Button" parent="HotbarPanel/Slots" unique_id=368346272]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "2"
+
+[node name="Slot3" type="Button" parent="HotbarPanel/Slots" unique_id=1377855075]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "3"
+
+[node name="Slot4" type="Button" parent="HotbarPanel/Slots" unique_id=1417188624]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "4"
+
+[node name="Slot5" type="Button" parent="HotbarPanel/Slots" unique_id=1183875915]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "5"
+
+[node name="Slot6" type="Button" parent="HotbarPanel/Slots" unique_id=534536967]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "6"
+
+[node name="Slot7" type="Button" parent="HotbarPanel/Slots" unique_id=1515659221]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "7"
+
+[node name="Slot8" type="Button" parent="HotbarPanel/Slots" unique_id=1024433360]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "8"
+
+[node name="Slot9" type="Button" parent="HotbarPanel/Slots" unique_id=688281074]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+toggle_mode = true
+text = "9"

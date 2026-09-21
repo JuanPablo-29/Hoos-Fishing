@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
+[ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
+[ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 
 [node name="MainGame" type="Node" unique_id=1319835424]
 
@@ -26,6 +28,21 @@ position = Vector2(288, 109)
 [node name="HudRoot" type="Control" parent="HudLayer" unique_id=1448044221]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="Hotbar" parent="HudLayer/HudRoot" unique_id=1301476650 instance=ExtResource("3_p73vr")]
+custom_minimum_size = Vector2(30, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 164.0
+offset_right = 279.912
+offset_bottom = 272.0
+grow_vertical = 0
+script = ExtResource("4_t4bxf")
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1384741688]
 
