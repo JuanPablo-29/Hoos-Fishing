@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Fish" format=3 uid="uid://sll11wxs7n57"]
+
+[ext_resource type="Script" uid="uid://cdfjcdaflaq26" path="res://src/gameplay/fishing/fish/fish.gd" id="1_xd2fl"]
+
+[resource]
+script = ExtResource("1_xd2fl")
+fish_name = "Bluegill"
+metadata/_custom_type_script = "uid://cdfjcdaflaq26"

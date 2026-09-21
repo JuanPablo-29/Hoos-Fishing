@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dd5fhg4hhww8x"]
+
+[ext_resource type="Script" uid="uid://dkgoif4d3j67m" path="res://src/gameplay/fishing/test_fishing_system.gd" id="1_e02oj"]
+
+[node name="test_fishing_system" type="Node" unique_id=1687931797]
+script = ExtResource("1_e02oj")

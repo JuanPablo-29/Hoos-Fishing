@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Fish" format=3 uid="uid://ctq0ii825x00e"]
+
+[ext_resource type="Script" uid="uid://cdfjcdaflaq26" path="res://src/gameplay/fishing/fish/fish.gd" id="1_bxnht"]
+
+[resource]
+script = ExtResource("1_bxnht")
+fish_name = "Bass"
+rarity = 1
+sell_value = 25
+catch_difficulty = 2.0
+metadata/_custom_type_script = "uid://cdfjcdaflaq26"
