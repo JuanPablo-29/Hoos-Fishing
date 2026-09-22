@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
 [ext_resource type="PackedScene" uid="uid://b8wxagjc001sc" path="res://src/gameplay/fishing/fish/swimming_fish.tscn" id="3_x628s"]
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
+[ext_resource type="PackedScene" uid="uid://ce2tjyp13e5wt" path="res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn" id="5_fpdtd"]
 
 [node name="MainGame" type="Node" unique_id=1319835424]
 
@@ -28,7 +29,16 @@ collision_mask = 0
 
 [node name="SwimmingFish2" parent="World/LevelRoot" unique_id=574987392 instance=ExtResource("1_7fyak")]
 position = Vector2(494, 170)
+collision_layer = 0
+collision_mask = 0
 swim_speed = 65.0
+
+[node name="SwimmingFish3" parent="World/LevelRoot" unique_id=1880017925 instance=ExtResource("5_fpdtd")]
+collision_layer = 0
+collision_mask = 0
+swim_speed = 80.0
+min_turn_time = 1.5
+max_turn_time = 3.5
 
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=116449528]
 
