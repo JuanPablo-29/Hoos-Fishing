@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dwk4clahdqy1c"]
 
+[ext_resource type="PackedScene" uid="uid://c45bj2kbvnckc" path="res://src/gameplay/fishing/fish/bass_swimming.tscn" id="1_7fyak"]
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
@@ -20,10 +21,14 @@ position = Vector2(191, 109)
 [node name="Hoo" parent="World/LevelRoot" unique_id=442130460 instance=ExtResource("1_hat22")]
 position = Vector2(288, 109)
 
-[node name="SwimmingFish" parent="World/LevelRoot" unique_id=574987392 instance=ExtResource("3_x628s")]
+[node name="SwimmingFish" parent="World/LevelRoot" unique_id=6666751 instance=ExtResource("3_x628s")]
 position = Vector2(394, 164)
 collision_layer = 0
 collision_mask = 0
+
+[node name="SwimmingFish2" parent="World/LevelRoot" unique_id=574987392 instance=ExtResource("1_7fyak")]
+position = Vector2(494, 170)
+swim_speed = 65.0
 
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=116449528]
 
