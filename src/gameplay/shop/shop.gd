@@ -1,6 +1,7 @@
 class_name Shop
 extends Node
 
+signal rod_purchased(rod: FishingRod)
 
 func purchase_rod(wallet: PlayerWallet, rod: FishingRod) -> bool:
 	if wallet == null or rod == null:
@@ -16,6 +17,7 @@ func purchase_rod(wallet: PlayerWallet, rod: FishingRod) -> bool:
 
 	if wallet.spend_money(rod.purchase_price):
 		wallet.add_rod(rod)
+		rod_purchased.emit(rod)
 		print("\nPurchased rod for $", rod.purchase_price)
 		return true
 
