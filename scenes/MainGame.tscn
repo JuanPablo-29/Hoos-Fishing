@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
+[ext_resource type="PackedScene" uid="uid://b8wxagjc001sc" path="res://src/gameplay/fishing/fish/swimming_fish.tscn" id="3_x628s"]
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 
 [node name="MainGame" type="Node" unique_id=1319835424]
@@ -18,6 +19,11 @@ position = Vector2(191, 109)
 
 [node name="Hoo" parent="World/LevelRoot" unique_id=442130460 instance=ExtResource("1_hat22")]
 position = Vector2(288, 109)
+
+[node name="SwimmingFish" parent="World/LevelRoot" unique_id=574987392 instance=ExtResource("3_x628s")]
+position = Vector2(394, 164)
+collision_layer = 0
+collision_mask = 0
 
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=116449528]
 
@@ -37,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 164.0
-offset_right = 279.912
-offset_bottom = 272.0
+offset_left = 30.0
+offset_top = 159.0
+offset_right = 289.912
+offset_bottom = 267.0
 grow_vertical = 0
 script = ExtResource("4_t4bxf")
 
