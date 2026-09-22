@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cwqbbff3jfify" path="res://assets/Fish/bluegill.png" id="1_bysel"]
 [ext_resource type="Script" uid="uid://cf8008buohdr7" path="res://src/gameplay/fishing/fish/swimming_fish.gd" id="1_ru44x"]
+[ext_resource type="Resource" uid="uid://ctq0ii825x00e" path="res://src/gameplay/fishing/fish/bass.tres" id="2_cdk6s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eioo6"]
 radius = 20.0
@@ -9,6 +10,7 @@ height = 60.0
 
 [node name="SwimmingFish" type="CharacterBody2D" unique_id=574987392]
 script = ExtResource("1_ru44x")
+fish_data = ExtResource("2_cdk6s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1124561492]
 position = Vector2(-51.000004, -35.000023)

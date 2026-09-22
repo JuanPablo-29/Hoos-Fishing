@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
 [ext_resource type="PackedScene" uid="uid://b8wxagjc001sc" path="res://src/gameplay/fishing/fish/swimming_fish.tscn" id="3_x628s"]
+[ext_resource type="Resource" uid="uid://sll11wxs7n57" path="res://src/gameplay/fishing/fish/bluegill.tres" id="4_1hpqh"]
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 [ext_resource type="PackedScene" uid="uid://ce2tjyp13e5wt" path="res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn" id="5_fpdtd"]
 
@@ -26,6 +27,7 @@ position = Vector2(288, 109)
 position = Vector2(394, 164)
 collision_layer = 0
 collision_mask = 0
+fish_data = ExtResource("4_1hpqh")
 
 [node name="SwimmingFish2" parent="World/LevelRoot" unique_id=574987392 instance=ExtResource("1_7fyak")]
 position = Vector2(494, 170)

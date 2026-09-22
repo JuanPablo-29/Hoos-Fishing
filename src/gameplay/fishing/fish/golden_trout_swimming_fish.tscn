@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://b8wxagjc001sc" path="res://src/gameplay/fishing/fish/swimming_fish.tscn" id="1_5kdr7"]
 [ext_resource type="Texture2D" uid="uid://y4ynft8rn5h5" path="res://assets/Fish/golden_trout.png" id="2_bnaed"]
+[ext_resource type="Resource" uid="uid://cwnjdyl5hso3i" path="res://src/gameplay/fishing/fish/golden_trout.tres" id="2_rw86u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5kdr7"]
 radius = 24.0
 height = 126.0
 
 [node name="SwimmingFish" unique_id=574987392 instance=ExtResource("1_5kdr7")]
+fish_data = ExtResource("2_rw86u")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1124561492]
 texture = ExtResource("2_bnaed")

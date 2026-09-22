@@ -1,6 +1,8 @@
 class_name SwimmingFish
 extends CharacterBody2D
 
+@export var fish_data: Fish
+
 @export var swim_speed: float = 50.0
 @export var left_boundary: float = 50.0
 @export var right_boundary: float = 500.0
@@ -62,3 +64,4 @@ func _reset_turn_timer() -> void:
 	
 func _ready() -> void:
 	_reset_turn_timer()
+	
