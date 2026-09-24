@@ -7,8 +7,8 @@ func _ready() -> void:
 
 #Use to register containers as a name and be able to add
 # scenes to those paths
-func register(name: String, root: Node):
-	containers[name] = root
+func register(name_root: String, root: Node):
+	containers[name_root] = root
 	
 # Spawns a presaved scene to the container,
 # container has to be registered with register
