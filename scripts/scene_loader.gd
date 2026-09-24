@@ -5,9 +5,13 @@ var containers = {}
 func _ready() -> void:
 	pass # Replace with function body.
 
+#Use to register containers as a name and be able to add
+# scenes to those paths
 func register(name: String, root: Node):
 	containers[name] = root
 	
+# Spawns a presaved scene to the container,
+# container has to be registered with register
 func spawn(path: String, container_name: String) -> Node:
 	var container = containers.get(container_name)
 	if !container:

@@ -63,5 +63,7 @@ func _reset_turn_timer() -> void:
 	turn_timer = randf_range(min_turn_time, max_turn_time)
 	
 func _ready() -> void:
+	collision_layer = 0
+	collision_mask = 0
 	_reset_turn_timer()
 	

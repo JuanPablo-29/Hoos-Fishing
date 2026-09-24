@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwk4clahdqy1c"]
+[gd_scene load_steps=6 format=3 uid="uid://dwk4clahdqy1c"]
 
 [ext_resource type="Script" uid="uid://dgyucf8iejvhh" path="res://scripts/main_game.gd" id="1_7f7ne"]
-[ext_resource type="PackedScene" uid="uid://c45bj2kbvnckc" path="res://src/gameplay/fishing/fish/bass_swimming.tscn" id="1_7fyak"]
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
-[ext_resource type="PackedScene" uid="uid://b8wxagjc001sc" path="res://src/gameplay/fishing/fish/swimming_fish.tscn" id="3_x628s"]
-[ext_resource type="Resource" uid="uid://sll11wxs7n57" path="res://src/gameplay/fishing/fish/bluegill.tres" id="4_1hpqh"]
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
-[ext_resource type="PackedScene" uid="uid://ce2tjyp13e5wt" path="res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn" id="5_fpdtd"]
 
 [node name="MainGame" type="Node"]
 script = ExtResource("1_7f7ne")
@@ -25,25 +21,6 @@ position = Vector2(191, 109)
 
 [node name="Hoo" parent="World/LevelRoot" instance=ExtResource("1_hat22")]
 position = Vector2(288, 109)
-
-[node name="SwimmingFish" parent="World/LevelRoot" instance=ExtResource("3_x628s")]
-position = Vector2(394, 164)
-collision_layer = 0
-collision_mask = 0
-fish_data = ExtResource("4_1hpqh")
-
-[node name="SwimmingFish2" parent="World/LevelRoot" instance=ExtResource("1_7fyak")]
-position = Vector2(494, 170)
-collision_layer = 0
-collision_mask = 0
-swim_speed = 65.0
-
-[node name="SwimmingFish3" parent="World/LevelRoot" instance=ExtResource("5_fpdtd")]
-collision_layer = 0
-collision_mask = 0
-swim_speed = 80.0
-min_turn_time = 1.5
-max_turn_time = 3.5
 
 [node name="EntityRoot" type="Node2D" parent="World"]
 
