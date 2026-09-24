@@ -1,5 +1,6 @@
-[gd_scene format=3 uid="uid://dwk4clahdqy1c"]
+[gd_scene load_steps=10 format=3 uid="uid://dwk4clahdqy1c"]
 
+[ext_resource type="Script" uid="uid://dgyucf8iejvhh" path="res://scripts/main_game.gd" id="1_7f7ne"]
 [ext_resource type="PackedScene" uid="uid://c45bj2kbvnckc" path="res://src/gameplay/fishing/fish/bass_swimming.tscn" id="1_7fyak"]
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
@@ -9,50 +10,53 @@
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 [ext_resource type="PackedScene" uid="uid://ce2tjyp13e5wt" path="res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn" id="5_fpdtd"]
 
-[node name="MainGame" type="Node" unique_id=1319835424]
+[node name="MainGame" type="Node"]
+script = ExtResource("1_7f7ne")
 
-[node name="Systems" type="Node" parent="." unique_id=912474039]
+[node name="Systems" type="Node" parent="."]
 
-[node name="World" type="Node2D" parent="." unique_id=680325787]
+[node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="LevelRoot" type="Node2D" parent="World" unique_id=292401214]
+[node name="LevelRoot" type="Node2D" parent="World"]
 
-[node name="Background" parent="World/LevelRoot" unique_id=2041534355 instance=ExtResource("2_xej52")]
+[node name="Background" parent="World/LevelRoot" instance=ExtResource("2_xej52")]
 position = Vector2(191, 109)
 
-[node name="Hoo" parent="World/LevelRoot" unique_id=442130460 instance=ExtResource("1_hat22")]
+[node name="Hoo" parent="World/LevelRoot" instance=ExtResource("1_hat22")]
 position = Vector2(288, 109)
 
-[node name="SwimmingFish" parent="World/LevelRoot" unique_id=6666751 instance=ExtResource("3_x628s")]
+[node name="SwimmingFish" parent="World/LevelRoot" instance=ExtResource("3_x628s")]
 position = Vector2(394, 164)
 collision_layer = 0
 collision_mask = 0
 fish_data = ExtResource("4_1hpqh")
 
-[node name="SwimmingFish2" parent="World/LevelRoot" unique_id=574987392 instance=ExtResource("1_7fyak")]
+[node name="SwimmingFish2" parent="World/LevelRoot" instance=ExtResource("1_7fyak")]
 position = Vector2(494, 170)
 collision_layer = 0
 collision_mask = 0
 swim_speed = 65.0
 
-[node name="SwimmingFish3" parent="World/LevelRoot" unique_id=1880017925 instance=ExtResource("5_fpdtd")]
+[node name="SwimmingFish3" parent="World/LevelRoot" instance=ExtResource("5_fpdtd")]
 collision_layer = 0
 collision_mask = 0
 swim_speed = 80.0
 min_turn_time = 1.5
 max_turn_time = 3.5
 
-[node name="EntityRoot" type="Node2D" parent="World" unique_id=116449528]
+[node name="EntityRoot" type="Node2D" parent="World"]
 
-[node name="EffectRoot" type="Node2D" parent="World" unique_id=278787309]
+[node name="EffectRoot" type="Node2D" parent="World"]
 
-[node name="HudLayer" type="CanvasLayer" parent="." unique_id=507942276]
+[node name="HudLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
-[node name="HudRoot" type="Control" parent="HudLayer" unique_id=1448044221]
+[node name="HudRoot" type="Control" parent="HudLayer"]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Hotbar" parent="HudLayer/HudRoot" unique_id=1301476650 instance=ExtResource("3_p73vr")]
+[node name="Hotbar" parent="HudLayer/HudRoot" instance=ExtResource("3_p73vr")]
 custom_minimum_size = Vector2(30, 100)
 layout_mode = 1
 anchors_preset = 7
@@ -67,25 +71,25 @@ offset_bottom = 267.0
 grow_vertical = 0
 script = ExtResource("4_t4bxf")
 
-[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1384741688]
+[node name="PauseLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=1080832072]
+[node name="PauseRoot" type="Control" parent="PauseLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1809707464]
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
 
-[node name="TransitonRoot" type="Control" parent="TransitionLayer" unique_id=1560153587]
+[node name="TransitonRoot" type="Control" parent="TransitionLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1586983554]
+[node name="DebugLayer" type="CanvasLayer" parent="."]
 
-[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=117972790]
+[node name="DebugRoot" type="Control" parent="DebugLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
