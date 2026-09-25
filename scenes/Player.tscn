@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b3t74xir3luqf"]
+[gd_scene load_steps=4 format=3 uid="uid://b3t74xir3luqf"]
 
 [ext_resource type="Script" uid="uid://bwoloisp2i71q" path="res://scripts/hoo.gd" id="1_bvoaa"]
 [ext_resource type="Texture2D" uid="uid://b0rhvli2w5afe" path="res://assets/icon.svg" id="2_deuev"]
@@ -7,18 +7,19 @@
 radius = 24.755169
 height = 148.0
 
-[node name="Hoo" type="CharacterBody2D" unique_id=442130460]
+[node name="Hoo" type="CharacterBody2D"]
+z_index = 1
 position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_bvoaa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106254409]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -2.9999847)
 scale = Vector2(1.4138461, 0.6666667)
 shape = SubResource("CapsuleShape2D_4xcp8")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940006229]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_deuev")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=255873783]
+[node name="Camera2D" type="Camera2D" parent="."]

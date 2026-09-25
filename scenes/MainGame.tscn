@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 
-[node name="MainGame" type="Node"]
+[node name="MainGame" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_7f7ne")
+player = NodePath("World/LevelRoot/Hoo")
 
 [node name="Systems" type="Node" parent="."]
 
