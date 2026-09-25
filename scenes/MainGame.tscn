@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwk4clahdqy1c"]
+[gd_scene load_steps=7 format=3 uid="uid://dwk4clahdqy1c"]
 
 [ext_resource type="Script" uid="uid://dgyucf8iejvhh" path="res://scripts/main_game.gd" id="1_7f7ne"]
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
+[ext_resource type="PackedScene" uid="uid://b05vuekjfqt2l" path="res://scenes/WalletUI.tscn" id="4_7fyak"]
 [ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 
-[node name="MainGame" type="Node"]
+[node name="MainGame" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_7f7ne")
+player = NodePath("World/LevelRoot/Hoo")
 
 [node name="Systems" type="Node" parent="."]
 
@@ -19,8 +21,9 @@ unique_name_in_owner = true
 [node name="Background" parent="World/LevelRoot" instance=ExtResource("2_xej52")]
 position = Vector2(191, 109)
 
-[node name="Hoo" parent="World/LevelRoot" instance=ExtResource("1_hat22")]
+[node name="Hoo" parent="World/LevelRoot" node_paths=PackedStringArray("wallet_ui") instance=ExtResource("1_hat22")]
 position = Vector2(288, 109)
+wallet_ui = NodePath("../../../HudLayer/HudRoot/WalletUi")
 
 [node name="EntityRoot" type="Node2D" parent="World"]
 
@@ -32,6 +35,9 @@ unique_name_in_owner = true
 [node name="HudRoot" type="Control" parent="HudLayer"]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="WalletUi" parent="HudLayer/HudRoot" instance=ExtResource("4_7fyak")]
+layout_mode = 1
 
 [node name="Hotbar" parent="HudLayer/HudRoot" instance=ExtResource("3_p73vr")]
 custom_minimum_size = Vector2(30, 100)
