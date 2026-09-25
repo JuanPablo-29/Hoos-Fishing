@@ -9,6 +9,7 @@ var fishes: Dictionary = {
 	"blue_gill": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
 	"trout": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn"
 }
+var fish_keys = fishes.keys()
 # Array where fish are added to
 var fish_spawned: Array[SwimmingFish] = []
 
@@ -25,15 +26,6 @@ func _ready() -> void:
 	fish_spawned.back().swim_speed = 80
 	fish_spawned.back().min_turn_time = 1.5
 	fish_spawned.back().max_turn_time = 3.5
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func fish_spawn_loop():
-	pass
 
 func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	var fish = SceneLoader.spawn(fishes.get(fish_type), "Entity") as SwimmingFish
@@ -42,6 +34,9 @@ func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	fish_spawned.append(fish)
 	return fish
 
-
+# Timer runs and spawns random fish on left or right every 5 seconds
 func _on_timer_timeout() -> void:
-	spawn_fish("blue_gill", player.position.x-250, 150)
+	var sides = [-1, 1]
+	var side = sides.pick_random()
+	var fish_to_spawn = fish_keys.pick_random()
+	spawn_fish(fish_to_spawn, player.position.x+(250*side) , 150)
