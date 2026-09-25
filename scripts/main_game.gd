@@ -6,7 +6,6 @@ var fishes: Dictionary = {
 	"blue_gill": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
 	"trout": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn"
 }
-var shop_keeper: Node2D
 
 # Array where fish are added to
 var fish_spawned: Array[SwimmingFish] = []
@@ -19,7 +18,7 @@ func _ready() -> void:
 	SceneLoader.register("Hud", %HudLayer/HudRoot)
 	
 	### Spawns shop keeper
-	shop_keeper = SceneLoader.spawn("res://scenes/ShopKeeper.tscn", "Level") as Node2D
+	var shop_keeper = SceneLoader.spawn("res://scenes/ShopKeeper.tscn", "Level") as Node2D
 	shop_keeper.position = Vector2(100,100)
 	shop_keeper.player = player
 	### Spawns fishes
