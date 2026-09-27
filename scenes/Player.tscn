@@ -1,11 +1,35 @@
 [gd_scene format=3 uid="uid://b3t74xir3luqf"]
 
 [ext_resource type="Script" uid="uid://bwoloisp2i71q" path="res://scripts/hoo.gd" id="1_bvoaa"]
-[ext_resource type="Texture2D" uid="uid://b0rhvli2w5afe" path="res://assets/icon.svg" id="2_deuev"]
+[ext_resource type="Texture2D" uid="uid://bdlhh4jwtsypw" path="res://assets/Hoo/hoo2.png" id="2_mdl7e"]
+[ext_resource type="Texture2D" uid="uid://dv2w3rnvwpt2j" path="res://assets/Hoo/hoo3.png" id="3_qu4a1"]
+[ext_resource type="Texture2D" uid="uid://ctvlhv1gnimy3" path="res://assets/Hoo/hoo1.png" id="4_70d11"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4xcp8"]
 radius = 24.755169
 height = 148.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0pb2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mdl7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qu4a1")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_70d11")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Hoo" type="CharacterBody2D" unique_id=442130460]
 position = Vector2(1, 1)
@@ -17,8 +41,9 @@ position = Vector2(-2, -2.9999847)
 scale = Vector2(1.4138461, 0.6666667)
 shape = SubResource("CapsuleShape2D_4xcp8")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940006229]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_deuev")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=125697714]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w0pb2")
+animation = &"fly"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=255873783]
