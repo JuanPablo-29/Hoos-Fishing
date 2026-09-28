@@ -8,9 +8,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4xcp8"]
 radius = 24.755169
 height = 148.0
-
-[node name="Hoo" type="CharacterBody2D"]
-z_index = 1
 [sub_resource type="SpriteFrames" id="SpriteFrames_w0pb2"]
 animations = [{
 "frames": [{
@@ -34,6 +31,7 @@ animations = [{
 }]
 
 [node name="Hoo" type="CharacterBody2D"]
+z_index = 1
 position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_bvoaa")
