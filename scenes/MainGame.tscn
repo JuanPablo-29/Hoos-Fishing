@@ -10,6 +10,7 @@
 script = ExtResource("1_7f7ne")
 
 [node name="Systems" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="World" type="Node2D" parent="."]
 unique_name_in_owner = true
