@@ -23,3 +23,7 @@ func _ready() -> void:
 	
 	var fish_manager = SceneLoader.spawn("res://scenes/FishSpawnManager.tscn","Systems") as Manager
 	fish_manager.player = $World/LevelRoot/Hoo
+	
+	var shop = SceneLoader.spawn("res://scenes/ShopKeeper.tscn", "Level")
+	shop.player = player
+	shop.position = Vector2(200,115)
