@@ -12,6 +12,9 @@ var fish_spawned: Array[SwimmingFish] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Show player inventory in hotbar
+	$HudLayer/HudRoot/Hotbar.bind_player(player)
+	
 	# Registers containers
 	SceneLoader.register("Level", %World/LevelRoot)
 	SceneLoader.register("Entity", %World/EntityRoot)

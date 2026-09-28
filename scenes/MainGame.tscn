@@ -1,79 +1,72 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwk4clahdqy1c"]
+[gd_scene format=3 uid="uid://dwk4clahdqy1c"]
 
 [ext_resource type="Script" uid="uid://dgyucf8iejvhh" path="res://scripts/main_game.gd" id="1_7f7ne"]
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
 [ext_resource type="PackedScene" uid="uid://b05vuekjfqt2l" path="res://scenes/WalletUI.tscn" id="4_7fyak"]
-[ext_resource type="Script" uid="uid://t2bkptdsrbnn" path="res://scripts/hotbar.gd" id="4_t4bxf"]
 
-[node name="MainGame" type="Node" node_paths=PackedStringArray("player")]
+[node name="MainGame" type="Node" unique_id=1072230429 node_paths=PackedStringArray("player")]
 script = ExtResource("1_7f7ne")
 player = NodePath("World/LevelRoot/Hoo")
 
-[node name="Systems" type="Node" parent="."]
+[node name="Systems" type="Node" parent="." unique_id=25725597]
 unique_name_in_owner = true
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1867371417]
 unique_name_in_owner = true
 
-[node name="LevelRoot" type="Node2D" parent="World"]
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=1538664723]
 
-[node name="Background" parent="World/LevelRoot" instance=ExtResource("2_xej52")]
+[node name="Background" parent="World/LevelRoot" unique_id=585486369 instance=ExtResource("2_xej52")]
 position = Vector2(191, 109)
 
-[node name="Hoo" parent="World/LevelRoot" node_paths=PackedStringArray("wallet_ui") instance=ExtResource("1_hat22")]
+[node name="Hoo" parent="World/LevelRoot" unique_id=354010857 node_paths=PackedStringArray("wallet_ui") instance=ExtResource("1_hat22")]
 position = Vector2(288, 109)
 wallet_ui = NodePath("../../../HudLayer/HudRoot/WalletUi")
 
-[node name="EntityRoot" type="Node2D" parent="World"]
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=1365173366]
 
-[node name="EffectRoot" type="Node2D" parent="World"]
+[node name="EffectRoot" type="Node2D" parent="World" unique_id=1188691205]
 
-[node name="HudLayer" type="CanvasLayer" parent="."]
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=683890521]
 unique_name_in_owner = true
 
-[node name="HudRoot" type="Control" parent="HudLayer"]
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=2084498665]
 layout_mode = 3
-anchors_preset = 0
-
-[node name="WalletUi" parent="HudLayer/HudRoot" instance=ExtResource("4_7fyak")]
-layout_mode = 1
-
-[node name="Hotbar" parent="HudLayer/HudRoot" instance=ExtResource("3_p73vr")]
-custom_minimum_size = Vector2(30, 100)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 159.0
-offset_right = 289.912
-offset_bottom = 267.0
-grow_vertical = 0
-script = ExtResource("4_t4bxf")
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="PauseLayer" type="CanvasLayer" parent="."]
+[node name="WalletUi" parent="HudLayer/HudRoot" unique_id=89119377 instance=ExtResource("4_7fyak")]
+layout_mode = 1
 
-[node name="PauseRoot" type="Control" parent="PauseLayer"]
+[node name="Hotbar" parent="HudLayer/HudRoot" unique_id=1109630061 instance=ExtResource("3_p73vr")]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1903320888]
+
+[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=497876631]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TransitionLayer" type="CanvasLayer" parent="."]
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1255196239]
 
-[node name="TransitonRoot" type="Control" parent="TransitionLayer"]
+[node name="TransitonRoot" type="Control" parent="TransitionLayer" unique_id=273668174]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DebugLayer" type="CanvasLayer" parent="."]
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=455274558]
 
-[node name="DebugRoot" type="Control" parent="DebugLayer"]
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=929051658]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
