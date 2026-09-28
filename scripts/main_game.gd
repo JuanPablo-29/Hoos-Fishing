@@ -16,28 +16,7 @@ func _ready() -> void:
 	SceneLoader.register("Level", %World/LevelRoot)
 	SceneLoader.register("Entity", %World/EntityRoot)
 	SceneLoader.register("Hud", %HudLayer/HudRoot)
+	SceneLoader.register("Systems", %Systems)
 	
-	### Spawns shop keeper
-	var shop_keeper = SceneLoader.spawn("res://scenes/ShopKeeper.tscn", "Level") as Node2D
-	shop_keeper.position = Vector2(100,100)
-	shop_keeper.player = player
-	### Spawns fishes
-	## Blue gill
-	spawn_fish("blue_gill", 300, 200)
-	fish_spawned.back().swim_speed = 50
-	## Bass
-	spawn_fish("bass",300,200)
-	## Trout
-	spawn_fish("trout", 300, 200)
-	fish_spawned.back().swim_speed = 80
-	fish_spawned.back().min_turn_time = 1.5
-	fish_spawned.back().max_turn_time = 3.5
-	
-	
-# Takes in string from dictionary for fish scene paths
-func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
-	var fish = SceneLoader.spawn(fishes.get(fish_type), "Entity") as SwimmingFish
-	fish.position = Vector2(x, y)
-	# Appends newest fish to array, access with fish_spawned.back()
-	fish_spawned.append(fish)
-	return fish
+	var fish_manager = SceneLoader.spawn("res://scenes/FishSpawnManager.tscn","Systems") as Manager
+	fish_manager.player = $World/LevelRoot/Hoo
