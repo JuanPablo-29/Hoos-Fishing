@@ -30,9 +30,15 @@ func _on_button_pressed() -> void:
 
 # Needs to take in type Fish and use fish.sell_value, place holder 10
 func sell_fish(wallet: PlayerWallet):
+	if !player.current_item:
+		return
 	var selected_item = player.current_item
-	if selected_item.item is Fish:
-		var fish = selected_item.item
+	var slot = player.inventory.slots[selected_item.slot]
+	if slot.is_empty():
+		print("No fish")
+		return
+	var fish = slot["item"]
+	if fish is Fish:
 		print(fish.fish_name)
 		wallet.add_money(fish.sell_value)
 		player.inventory.remove_item(selected_item.slot,1)

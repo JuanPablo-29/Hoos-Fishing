@@ -1,14 +1,15 @@
-[gd_scene format=3 uid="uid://b05vuekjfqt2l"]
+[gd_scene format=3 uid="uid://cv42xyisv2ej"]
 
-[node name="WalletUi" type="Control"]
+[node name="WalletUi" type="Control" unique_id=522628951]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=820569954]
 layout_mode = 0
 offset_left = 315.0
 offset_top = 4.0

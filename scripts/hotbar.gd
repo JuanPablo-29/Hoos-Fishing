@@ -42,7 +42,7 @@ func select_slot(index: int) -> void:
 	var entry: Dictionary = inventory.slots[index]
 	# Makes the selected item the current slot
 	var item_info = player.ItemData.new()
-	item_info.item = entry["item"]
+	item_info.item = entry.get("item")
 	item_info.slot = index
 	player.current_item = item_info
 	
