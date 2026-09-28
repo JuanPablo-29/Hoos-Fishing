@@ -40,6 +40,11 @@ func select_slot(index: int) -> void:
 	selected_slot = index
 	
 	var entry: Dictionary = inventory.slots[index]
+	# Makes the selected item the current slot
+	var item_info = player.ItemData.new()
+	item_info.item = entry["item"]
+	item_info.slot = index
+	player.current_item = item_info
 	
 	# Selecting a rod equips it
 	if not entry.is_empty():

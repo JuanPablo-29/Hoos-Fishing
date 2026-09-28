@@ -10,7 +10,13 @@ var equipped_rod: FishingRod
 @export var start_with_demo_inventory: bool = true
 
 
+
 @export var wallet_ui: Control
+
+class ItemData:
+	var item: Resource
+	var slot: int
+var current_item: ItemData
 
 func _ready() -> void:
 	wallet.balance = 500
