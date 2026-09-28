@@ -6,6 +6,7 @@ var close_enough: bool = false
 var shop_ui: Control
 @onready var shop_ui_path: String = "res://scenes/ShopUI.tscn"
 var shop:= Shop.new()
+var sell_result: Label
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,27 +23,35 @@ func _process(delta: float) -> void:
 		
 	
 
+# Opens shop ui and sets variables and connects buttons
 func _on_button_pressed() -> void:
 	if !shop_ui:
 		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
 		shop_ui.get_node("ColorRect/CenterContainer/Container/Buy").pressed.connect(_on_buy_pressed)
 		shop_ui.get_node("ColorRect/CenterContainer/Container/Sell").pressed.connect(_on_sell_pressed)
+		shop_ui.get_node("ColorRect/Close").pressed.connect(_on_close_pressed)
+		sell_result = shop_ui.get_node("ColorRect/Labels/SellResult")
 
-# Needs to take in type Fish and use fish.sell_value, place holder 10
+# Sells selected fish and changes label to communicate to player
 func sell_fish(wallet: PlayerWallet):
 	if !player.current_item:
 		return
 	var selected_item = player.current_item
 	var slot = player.inventory.slots[selected_item.slot]
 	if slot.is_empty():
+		sell_result.text = "No fish"
+		sell_result.add_theme_color_override("font_color", Color.RED)
 		print("No fish")
 		return
 	var fish = slot["item"]
 	if fish is Fish:
-		print(fish.fish_name)
+		sell_result.text = "%s: Sold for $%d" % [fish.fish_name, fish.sell_value]
+		sell_result.add_theme_color_override("font_color", Color.GREEN)
 		wallet.add_money(fish.sell_value)
 		player.inventory.remove_item(selected_item.slot,1)
 	else:
+		sell_result.text = "Select Fish"
+		sell_result.add_theme_color_override("font_color", Color.RED)
 		print("Not Fish")
 
 
@@ -53,3 +62,6 @@ func _on_buy_pressed() -> void:
 func _on_sell_pressed() -> void:
 	sell_fish(player.wallet)
 	print(player.wallet.balance)
+
+func _on_close_pressed() -> void:
+	shop_ui.queue_free()
