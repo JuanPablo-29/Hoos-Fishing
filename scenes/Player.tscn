@@ -9,6 +9,8 @@
 radius = 24.755169
 height = 148.0
 
+[node name="Hoo" type="CharacterBody2D"]
+z_index = 1
 [sub_resource type="SpriteFrames" id="SpriteFrames_w0pb2"]
 animations = [{
 "frames": [{

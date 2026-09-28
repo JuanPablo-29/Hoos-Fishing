@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcpkigr4inxgj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qq7pr"]
+
+[node name="ShopUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 27.0
+offset_right = 114.15499
+offset_bottom = 59.57143
+scale = Vector2(8.946667, 3.7692308)
+color = Color(0.47453344, 0.19080368, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+z_index = 1
+layout_mode = 0
+offset_left = 2.682563
+offset_top = 11.408163
+offset_right = 78.68256
+offset_bottom = 58.408165
+scale = Vector2(0.15757848, 0.43364578)
+
+[node name="Container" type="HBoxContainer" parent="ColorRect/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Buy" type="Button" parent="ColorRect/CenterContainer/Container"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "Buy"
+
+[node name="Sell" type="Button" parent="ColorRect/CenterContainer/Container"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "Sell"
+
+[node name="Button3" type="Button" parent="ColorRect/CenterContainer/Container"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "IDK"
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 8.494783
+offset_top = -0.26530612
+offset_right = 48.49478
+offset_bottom = 22.734694
+scale = Vector2(0.37841412, 1.0274385)
+theme_override_font_sizes/font_size = 9
+text = "Shop"
