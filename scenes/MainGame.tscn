@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b3t74xir3luqf" path="res://scenes/Player.tscn" id="1_hat22"]
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
-[ext_resource type="PackedScene" uid="uid://b05vuekjfqt2l" path="res://scenes/WalletUI.tscn" id="4_7fyak"]
+[ext_resource type="PackedScene" uid="uid://cv42xyisv2ej" path="res://scenes/WalletUI.tscn" id="4_7fyak"]
+[ext_resource type="PackedScene" uid="uid://cfshawjjgh461" path="res://scenes/PauseMenu.tscn" id="6_7fyak"]
 
 [node name="MainGame" type="Node" unique_id=1072230429 node_paths=PackedStringArray("player")]
 script = ExtResource("1_7f7ne")
@@ -50,11 +51,7 @@ anchors_preset = -1
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1903320888]
 
-[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=497876631]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PauseMenu" parent="PauseLayer" unique_id=2013542813 instance=ExtResource("6_7fyak")]
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1255196239]
 
