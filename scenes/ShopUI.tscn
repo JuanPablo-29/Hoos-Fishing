@@ -100,3 +100,10 @@ offset_left = 137.0
 offset_top = 71.0
 offset_right = 177.0
 offset_bottom = 94.0
+
+[node name="UpgradeResult" type="Label" parent="ColorRect/Labels" unique_id=1818179505]
+offset_left = 99.0
+offset_top = 128.0
+offset_right = 100.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 12

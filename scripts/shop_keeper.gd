@@ -7,6 +7,13 @@ var shop_ui: Control
 @onready var shop_ui_path: String = "res://scenes/ShopUI.tscn"
 var shop:= Shop.new()
 var sell_result: Label
+var upgrade_result: Label
+
+var rods: Dictionary = {
+	"0": "res://src/gameplay/fishing/rods/basic_rod.tres",
+	"1": "res://src/gameplay/fishing/rods/improved_rod.tres",
+	"2": "res://src/gameplay/fishing/rods/advanced_rod.tres"
+}
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,6 +38,8 @@ func _on_button_pressed() -> void:
 		shop_ui.get_node("ColorRect/CenterContainer/Container/Sell").pressed.connect(_on_sell_pressed)
 		shop_ui.get_node("ColorRect/Close").pressed.connect(_on_close_pressed)
 		sell_result = shop_ui.get_node("ColorRect/Labels/SellResult")
+		upgrade_result = shop_ui.get_node("ColorRect/Labels/UpgradeResult")
+		
 
 # Sells selected fish and changes label to communicate to player
 func sell_fish(wallet: PlayerWallet):
@@ -55,9 +64,29 @@ func sell_fish(wallet: PlayerWallet):
 		print("Not Fish")
 
 
+func upgrade_rod(rod: FishingRod, wallet: PlayerWallet, inv: PlayerInventory):
+	var new_rod = load(rods[str(rod.level+1)]) as FishingRod
+	if wallet.can_afford(new_rod.purchase_price):
+		wallet.spend_money(new_rod.purchase_price)
+		inv.remove_item(0)
+		inv.add_item(new_rod)
+		player.equipped_rod = new_rod
+		wallet.add_rod(new_rod)
+		upgrade_result.text = "Bought: %s for $%d" % [new_rod.rod_name, new_rod.purchase_price]
+		upgrade_result.add_theme_color_override("font_color", Color.GREEN)
+	else:
+		upgrade_result.text = "Need $%d" % new_rod.purchase_price
+		upgrade_result.add_theme_color_override("font_color", Color.RED)
+		
+
 func _on_buy_pressed() -> void:
-	player.wallet.spend_money(10)
-	print(player.wallet.balance)
+	var rod = player.equipped_rod
+	if rod.level == 2:
+		upgrade_result.text = "Max Rod"
+		upgrade_result.add_theme_color_override("font_color", Color.RED)
+	else:
+		upgrade_rod(player.equipped_rod, player.wallet, player.inventory)
+	print(player.equipped_rod.rod_name)
 
 func _on_sell_pressed() -> void:
 	sell_fish(player.wallet)
