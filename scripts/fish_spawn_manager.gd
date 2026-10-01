@@ -13,8 +13,10 @@ var fish_keys = fishes.keys()
 # Array where fish are added to
 var fish_spawned: Array[SwimmingFish] = []
 
+const SPAWN_DISTANCE = 250
+
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func spawn_initial_fish() -> void:
 	### Spawns fishes
 	## Blue gill
 	spawn_fish("blue_gill", 300, 200)
@@ -30,6 +32,7 @@ func _ready() -> void:
 func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	var fish = SceneLoader.spawn(fishes.get(fish_type), "Entity") as SwimmingFish
 	fish.position = Vector2(x, y)
+	fish.player = player
 	# Appends newest fish to array, access with fish_spawned.back()
 	fish_spawned.append(fish)
 	return fish
@@ -39,4 +42,4 @@ func _on_timer_timeout() -> void:
 	var sides = [-1, 1]
 	var side = sides.pick_random()
 	var fish_to_spawn = fish_keys.pick_random()
-	spawn_fish(fish_to_spawn, player.position.x+(250*side) , 150)
+	spawn_fish(fish_to_spawn, player.position.x+(SPAWN_DISTANCE*side) , 150)
