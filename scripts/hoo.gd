@@ -55,3 +55,7 @@ func update_animation() -> void:
 		sprite.play("fly")
 	else:
 		sprite.play("idle")
+
+### Get distance from player
+func get_distance(pos: Vector2) -> float:
+	return global_position.distance_to(pos)

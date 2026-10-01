@@ -20,6 +20,9 @@ var swim_time: float = 0.0
 
 var turn_timer: float = 0.0
 
+var player: Player
+const DESPAWN_DISTANCE = 400
+
 func _physics_process(delta: float) -> void:
 	swim_time += delta
 	turn_timer -= delta
@@ -67,3 +70,14 @@ func _ready() -> void:
 	collision_mask = 0
 	_reset_turn_timer()
 	
+func _process(delta: float) -> void:
+	var dist = player.get_distance(self.position)
+	if dist > DESPAWN_DISTANCE:
+		if $Timer.is_stopped():
+			$Timer.start()
+	else:
+		$Timer.stop()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
