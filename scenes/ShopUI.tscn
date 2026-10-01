@@ -21,7 +21,7 @@ color = Color(0.47453344, 0.19080368, 0, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=1720670980]
 z_index = 1
-custom_maximum_size = Vector2(30, 100)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -33,12 +33,13 @@ offset_bottom = 50.0
 grow_vertical = 2
 
 [node name="Container" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=1698661679]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 alignment = 1
 
 [node name="Sell" type="Button" parent="ColorRect/CenterContainer/Container" unique_id=406112923]
-custom_minimum_size = Vector2(100, 10)
-custom_maximum_size = Vector2(100, 20)
+custom_minimum_size = Vector2(50, 10)
+custom_maximum_size = Vector2(30, 20)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -48,15 +49,15 @@ action_mode = 0
 text = "Sell"
 
 [node name="Buy" type="Button" parent="ColorRect/CenterContainer/Container" unique_id=469903469]
-custom_minimum_size = Vector2(100, 10)
-custom_maximum_size = Vector2(100, 20)
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(150, -1)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 12
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
 action_mode = 0
-text = "Buy"
+text = "Upgrade Rod"
 
 [node name="Title" type="Label" parent="ColorRect" unique_id=412564845]
 layout_mode = 0
@@ -99,3 +100,10 @@ offset_left = 137.0
 offset_top = 71.0
 offset_right = 177.0
 offset_bottom = 94.0
+
+[node name="UpgradeResult" type="Label" parent="ColorRect/Labels" unique_id=1818179505]
+offset_left = 99.0
+offset_top = 128.0
+offset_right = 100.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 12
