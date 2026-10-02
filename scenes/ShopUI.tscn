@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dnklr4j5vpdsk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qq7pr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6527"]
+
+[node name="ShopUi" type="Control" unique_id=2037705964]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=194646513]
+custom_minimum_size = Vector2(200, 150)
+custom_maximum_size = Vector2(-1, 150)
+layout_mode = 1
+offset_left = 93.0
+offset_top = 19.0
+offset_right = 293.0
+offset_bottom = 169.0
+offset_transform_enabled = true
+color = Color(0.47453344, 0.19080368, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=1720670980]
+z_index = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -50.0
+offset_right = 32.0
+offset_bottom = 50.0
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=1698661679]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Sell" type="Button" parent="ColorRect/CenterContainer/Container" unique_id=406112923]
+custom_minimum_size = Vector2(50, 10)
+custom_maximum_size = Vector2(30, 20)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "Sell"
+
+[node name="Buy" type="Button" parent="ColorRect/CenterContainer/Container" unique_id=469903469]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "Upgrade Rod"
+
+[node name="Title" type="Label" parent="ColorRect" unique_id=412564845]
+layout_mode = 0
+offset_left = 0.89418745
+offset_top = -1.8571428
+offset_right = 22.894188
+offset_bottom = 11.142858
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 16
+text = "Shop"
+
+[node name="Close" type="Button" parent="ColorRect" unique_id=349945311]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -12.0
+offset_bottom = 17.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s6527")
+text = "x"
+
+[node name="Labels" type="Node" parent="ColorRect" unique_id=1462193202]
+
+[node name="Description" type="Label" parent="ColorRect/Labels" unique_id=890870106]
+offset_left = 133.0
+offset_top = 45.0
+offset_right = 261.0
+offset_bottom = 68.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 10
+text = "Select fish in hotbar to sell"
+
+[node name="SellResult" type="Label" parent="ColorRect/Labels" unique_id=717130037]
+offset_left = 137.0
+offset_top = 71.0
+offset_right = 177.0
+offset_bottom = 94.0
+
+[node name="UpgradeResult" type="Label" parent="ColorRect/Labels" unique_id=1818179505]
+offset_left = 99.0
+offset_top = 128.0
+offset_right = 100.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 12
