@@ -8,4 +8,5 @@ rod_name = "Papa New Toy"
 purchase_price = 250
 max_fish_rarity = 1
 catch_speed_multiplier = 1.15
+level = 1
 metadata/_custom_type_script = "uid://bwo7sma6ssudx"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq1wkg538x5r5"]
+
+[ext_resource type="PackedScene" uid="uid://b8wxagjc001sc" path="res://src/gameplay/fishing/fish/swimming_fish.tscn" id="1_3klon"]
+[ext_resource type="Resource" uid="uid://sll11wxs7n57" path="res://src/gameplay/fishing/fish/bluegill.tres" id="2_3klon"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpdtd"]
+radius = 24.0
+height = 126.0
+
+[node name="SwimmingFish" instance=ExtResource("1_3klon")]
+fish_data = ExtResource("2_3klon")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(5, -4)
+scale = Vector2(0.8666644, 0.51999867)
+shape = SubResource("CapsuleShape2D_fpdtd")
