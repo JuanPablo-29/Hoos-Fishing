@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://c6tgomewlik48"]
 
 [ext_resource type="Texture2D" uid="uid://c667s8yy1noap" path="res://assets/FishingBar/Fishing Bar.png" id="1_4gum4"]
-[ext_resource type="Script" uid="uid://ivh20ctdxqef" path="res://scripts/fishing_minigame.gd" id="1_duajh"]
 [ext_resource type="Texture2D" uid="uid://dpg03fakusm8x" path="res://assets/FishingBar/Green Block.png" id="2_74ar8"]
 [ext_resource type="Texture2D" uid="uid://bh02r50dwbwbj" path="res://assets/FishingBar/Progress Bar.png" id="3_duajh"]
-[ext_resource type="Texture2D" uid="uid://b5yhpl7se4g7d" path="res://assets/FishingBar/fish_sideways.png" id="4_74ar8"]
 
 [node name="FishingMinigame" type="Node2D" unique_id=2066441993]
 position = Vector2(19, 64)
-script = ExtResource("1_duajh")
 
 [node name="FishingFrame" type="Sprite2D" parent="." unique_id=1111889211]
 texture = ExtResource("1_4gum4")
@@ -19,6 +16,3 @@ texture = ExtResource("2_74ar8")
 [node name="ProgressMeter" type="Sprite2D" parent="." unique_id=1602248457]
 position = Vector2(16, 0)
 texture = ExtResource("3_duajh")
-
-[node name="MovingFish" type="Sprite2D" parent="." unique_id=1156823450]
-texture = ExtResource("4_74ar8")
