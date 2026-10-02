@@ -5,6 +5,9 @@ var player: Player
 var inventory: PlayerInventory
 @onready var slots: Array[Node] = $HotbarPanel/Slots.get_children()
 
+# Text above the hotbar that shows the currently selected item
+@onready var selected_item_label: Label = $SelectedItemLabel
+
 const BLUEGILL_ICON = preload("res://assets/Fish/bluegill.png")
 const BASS_ICON = preload("res://assets/Fish/bass.png")
 const TROUT_ICON = preload("res://assets/Fish/golden_trout.png")
@@ -99,3 +102,29 @@ func update_hotbar() -> void:
 
 			if quantity > 1:
 				count.text = str(quantity)
+	
+	# Update item name whenever hotbar changes
+	update_selected_item_text()
+
+# Shows the name of the item in the currently selected hotbar slot.
+func update_selected_item_text() -> void:
+	if inventory == null:
+		selected_item_label.text = ""
+		return
+
+	var entry: Dictionary = inventory.slots[selected_slot]
+
+	# Show nothing when the selected slot is empty.
+	if entry.is_empty():
+		selected_item_label.text = ""
+		return
+
+	var item: Resource = entry["item"]
+
+	# Show the item's name based on its type.
+	if item is Fish:
+		selected_item_label.text = item.fish_name
+	elif item is FishingRod:
+		selected_item_label.text = item.rod_name
+	else:
+		selected_item_label.text = ""
