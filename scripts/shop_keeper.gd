@@ -5,7 +5,6 @@ var player: Player
 var close_enough: bool = false
 var shop_ui: Control
 @onready var shop_ui_path: String = "res://scenes/ShopUI.tscn"
-var shop:= Shop.new()
 var sell_result: Label
 var upgrade_result: Label
 
@@ -24,7 +23,7 @@ func _process(delta: float) -> void:
 	else:
 		sprite.color = Color.BROWN
 		close_enough = false
-	button.disabled = !close_enough
+	button.disabled = !close_enough or _is_fishing()
 	if player.velocity.x != 0 && shop_ui:
 		shop_ui.queue_free()
 		
@@ -32,6 +31,8 @@ func _process(delta: float) -> void:
 
 # Opens shop ui and sets variables and connects buttons
 func _on_button_pressed() -> void:
+	if _is_fishing():
+		return
 	if !shop_ui:
 		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
 		shop_ui.get_node("ColorRect/CenterContainer/Container/Buy").pressed.connect(_on_buy_pressed)
@@ -39,6 +40,10 @@ func _on_button_pressed() -> void:
 		shop_ui.get_node("ColorRect/Close").pressed.connect(_on_close_pressed)
 		sell_result = shop_ui.get_node("ColorRect/Labels/SellResult")
 		upgrade_result = shop_ui.get_node("ColorRect/Labels/UpgradeResult")
+
+
+func _is_fishing() -> bool:
+	return get_tree().get_first_node_in_group("fishing_minigame") != null
 		
 
 # Sells selected fish and changes label to communicate to player
