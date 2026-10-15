@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bikvpinvkw8r4" path="res://scenes/Background.tscn" id="2_xej52"]
 [ext_resource type="PackedScene" uid="uid://fswxs08lxfc6" path="res://scenes/Hotbar.tscn" id="3_p73vr"]
 [ext_resource type="PackedScene" uid="uid://cv42xyisv2ej" path="res://scenes/WalletUI.tscn" id="4_7fyak"]
+[ext_resource type="Script" uid="uid://crxciasr8c5jn" path="res://scripts/day_and_night_cycle.gd" id="4_fpdtd"]
 [ext_resource type="PackedScene" uid="uid://cfshawjjgh461" path="res://scenes/PauseMenu.tscn" id="6_7fyak"]
 
 [node name="MainGame" type="Node" unique_id=1072230429 node_paths=PackedStringArray("player")]
@@ -29,6 +30,9 @@ wallet_ui = NodePath("../../../HudLayer/HudRoot/WalletUi")
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=1365173366]
 
 [node name="EffectRoot" type="Node2D" parent="World" unique_id=1188691205]
+
+[node name="DayNightCycle" type="CanvasModulate" parent="World" unique_id=1957222202]
+script = ExtResource("4_fpdtd")
 
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=683890521]
 unique_name_in_owner = true
