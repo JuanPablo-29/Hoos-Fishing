@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Hoos Fishing"
-run/main_scene="uid://dwk4clahdqy1c"
+run/main_scene="uid://ommbe8hexae"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
