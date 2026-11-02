@@ -46,7 +46,9 @@ var retarget_timer := 0.0
  
 var track_top := 0.0   # y position of the track top, in this node's local space
 var zone_h := 15.0
+var catch_zone_multiplier: float = 1.0
 var fish_h := 8.0
+var base_zone_scale_y: float = 1.0
 var fish_speed := 60.0
 var fish_jump := 50.0
 var retarget_min := 0.4
@@ -54,6 +56,8 @@ var retarget_max := 1.2
  
  
 func _ready() -> void:
+	base_zone_scale_y = catch_zone.scale.y
+
 	if auto_start:
 		start(difficulty)
  
@@ -63,8 +67,15 @@ func start(diff: float = 0.5) -> void:
 	fish_speed = lerpf(35.0, 90.0, diff)
 	fish_jump = lerpf(35.0, 75.0, diff)
 	retarget_max = lerpf(1.6, 0.7, diff)
- 
+	
+	catch_zone.scale.y = base_zone_scale_y * catch_zone_multiplier
+	
 	zone_h = catch_zone.texture.get_height() * catch_zone.scale.y
+	
+	if zone_h > track_height:
+		zone_h = track_height
+		catch_zone.scale.y = track_height / catch_zone.texture.get_height()
+		
 	fish_h = fish.texture.get_height() * fish.scale.y
 	track_top = _top_left(frame).y + track_inset_top
  
