@@ -126,6 +126,9 @@ func _catch_fish(fish: SwimmingFish) -> void:
 		print("Inventory full! The %s got away." % fish.fish_data.fish_name)
 		fish.flee()
 		return
- 
+	
+	# Count the fish only after it successfully enters inventory.
+	player.catch_tracker.record_catch(fish.fish_data)
+
 	print("Caught a %s!" % fish.fish_data.fish_name)
 	fish.queue_free()
