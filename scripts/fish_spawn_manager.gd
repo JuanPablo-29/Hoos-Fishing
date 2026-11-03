@@ -86,9 +86,10 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
 	var screen: Vector2 = get_viewport().get_visible_rect().size
 	minigame.position = Vector2(screen.x - 40.0, screen.y * 0.5)
  
-	# A better rod fills the catch meter faster
+	# Better rods increase catch speed and make the catch zone larger
 	if rod != null:
 		minigame.catch_gain *= rod.catch_speed_multiplier
+		minigame.catch_zone_multiplier = rod.catch_zone_multiplier
  
 	# Fish.catch_difficulty runs 1.0 (bluegill) to 3.0 (golden trout);
 	# map that to the minigame's 0..1 difficulty scale.
