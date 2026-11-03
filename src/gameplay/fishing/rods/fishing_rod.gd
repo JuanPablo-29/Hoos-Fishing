@@ -6,7 +6,10 @@ extends Resource
 @export var max_fish_rarity: Fish.Rarity = Fish.Rarity.ONE_STAR
 @export var catch_speed_multiplier: float = 1.0
 @export var catch_zone_multiplier: float = 1.0
-@export var level: int
+
+@export var level: int = 0
+# Leave empty when this rod has no further upgrade
+@export var next_upgrade: FishingRod
 
 
 func can_catch(fish: Fish) -> bool:

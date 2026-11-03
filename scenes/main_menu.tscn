@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://ommbe8hexae"]
+
+[ext_resource type="Script" uid="uid://bo6ntcy5q00s5" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://dttjwxad3imnt" path="res://assets/Background Images/Sky.png" id="2_oa1go"]
+[ext_resource type="Texture2D" uid="uid://bc7rwixdnw1jg" path="res://assets/Background Images/Clouds.png" id="3_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://cfb724j14m1ik" path="res://assets/Background Images/Trees_1.png" id="4_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://dqk72y0xgwsdm" path="res://assets/Background Images/Grass.png" id="5_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://dff7mwntu6tte" path="res://assets/Background Images/Trees_2.png" id="5_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://ddromu3rfu6br" path="res://assets/Background Images/Trees_3.png" id="6_flqon"]
+[ext_resource type="Texture2D" uid="uid://daaerftfr0k8j" path="res://assets/Background Images/Water.png" id="6_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://coa1pu34jelgb" path="res://assets/Background Images/Trees_4.png" id="7_rcqid"]
+
+[node name="MainMenu" type="Control" unique_id=516213816]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ekxnf")
+
+[node name="MenuBakcground" type="Node2D" parent="." unique_id=1836733675]
+
+[node name="TextureRect" type="TextureRect" parent="MenuBakcground" unique_id=327157370]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_oa1go")
+
+[node name="TextureRect2" type="TextureRect" parent="MenuBakcground" unique_id=1385800519]
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("3_tbmy8")
+
+[node name="TextureRect8" type="TextureRect" parent="MenuBakcground" unique_id=264684758]
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("7_rcqid")
+
+[node name="TextureRect7" type="TextureRect" parent="MenuBakcground" unique_id=442401183]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_flqon")
+
+[node name="TextureRect6" type="TextureRect" parent="MenuBakcground" unique_id=88379359]
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("5_lgwnu")
+
+[node name="TextureRect3" type="TextureRect" parent="MenuBakcground" unique_id=331204269]
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("4_jk1qb")
+
+[node name="TextureRect4" type="TextureRect" parent="MenuBakcground" unique_id=1357614003]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_5dd4i")
+
+[node name="TextureRect5" type="TextureRect" parent="MenuBakcground" unique_id=1023069383]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_lgwnu")
+
+[node name="MenuPanel" type="Panel" parent="." unique_id=952515534]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 38.0
+offset_right = 267.0
+offset_bottom = 178.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel" unique_id=901579294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MenuPanel/VBoxContainer" unique_id=1054263274]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Hoo's Fishing
+"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="MenuPanel/VBoxContainer" unique_id=1755031984]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="MenuPanel/VBoxContainer" unique_id=624722439]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"

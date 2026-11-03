@@ -4,6 +4,11 @@ extends RefCounted
 signal changed
 
 const MAX_STACK: int = 64
+const HOTBAR_SIZE: int = 3
+const BACKPACK_SIZE: int = 6
+const BACKPACK_PRICE: int = 200
+
+var has_backpack: bool = false
 
 # Each slot stores a resource and its quantity
 # Empty dictionary is an empty slot
@@ -60,3 +65,37 @@ func remove_item(index: int, amount: int = 1) -> int:
 	changed.emit()
 	
 	return removed
+	
+func buy_backpack(wallet: PlayerWallet) -> bool:
+	if has_backpack or wallet == null:
+		return false
+
+	if not wallet.spend_money(BACKPACK_PRICE):
+		return false
+
+	has_backpack = true
+
+	for i in range(BACKPACK_SIZE):
+		slots.append({})
+
+	changed.emit()
+	return true
+
+
+# Swapping with an empty slot moves the item.
+func swap_slots(first: int, second: int) -> bool:
+	if first < 0 or second < 0:
+		return false
+
+	if first >= slots.size() or second >= slots.size():
+		return false
+
+	if first == second:
+		return false
+
+	var temporary: Dictionary = slots[first]
+	slots[first] = slots[second]
+	slots[second] = temporary
+
+	changed.emit()
+	return true

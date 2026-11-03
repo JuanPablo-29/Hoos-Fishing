@@ -8,12 +8,8 @@ var shop_ui: Control
 var shop:= Shop.new()
 var sell_result: Label
 var upgrade_result: Label
+var backpack_buy_button: Button
 
-var rods: Dictionary = {
-	"0": "res://src/gameplay/fishing/rods/basic_rod.tres",
-	"1": "res://src/gameplay/fishing/rods/improved_rod.tres",
-	"2": "res://src/gameplay/fishing/rods/advanced_rod.tres"
-}
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,7 +35,26 @@ func _on_button_pressed() -> void:
 		shop_ui.get_node("ColorRect/Close").pressed.connect(_on_close_pressed)
 		sell_result = shop_ui.get_node("ColorRect/Labels/SellResult")
 		upgrade_result = shop_ui.get_node("ColorRect/Labels/UpgradeResult")
+		backpack_buy_button = Button.new()
+		backpack_buy_button.text = "Backpack owned" if player.inventory.has_backpack else "Buy Backpack - $200"
+		backpack_buy_button.disabled = player.inventory.has_backpack
+		shop_ui.get_node("ColorRect/CenterContainer/Container").add_child(backpack_buy_button)
+		backpack_buy_button.pressed.connect(_on_backpack_buy_pressed)
 		
+
+func _on_backpack_buy_pressed() -> void:
+	if player.inventory.has_backpack:
+		show_upgrade_result("You already own a backpack.", false)
+		return
+
+	if not player.inventory.buy_backpack(player.wallet):
+		show_upgrade_result("Need $200 for a backpack.", false)
+		return
+
+	backpack_buy_button.text = "Backpack owned"
+	backpack_buy_button.disabled = true
+
+	show_upgrade_result("Backpack equipped! Press B to open.", true)
 
 # Sells selected fish and changes label to communicate to player
 func sell_fish(wallet: PlayerWallet):
@@ -64,29 +79,79 @@ func sell_fish(wallet: PlayerWallet):
 		print("Not Fish")
 
 
-func upgrade_rod(rod: FishingRod, wallet: PlayerWallet, inv: PlayerInventory):
-	var new_rod = load(rods[str(rod.level+1)]) as FishingRod
-	if wallet.can_afford(new_rod.purchase_price):
-		wallet.spend_money(new_rod.purchase_price)
-		inv.remove_item(0)
-		inv.add_item(new_rod)
-		player.equipped_rod = new_rod
-		wallet.add_rod(new_rod)
-		upgrade_result.text = "Bought: %s for $%d" % [new_rod.rod_name, new_rod.purchase_price]
-		upgrade_result.add_theme_color_override("font_color", Color.GREEN)
-	else:
-		upgrade_result.text = "Need $%d" % new_rod.purchase_price
-		upgrade_result.add_theme_color_override("font_color", Color.RED)
-		
+# Upgrade the rod in the selected hotbar slot.
+func upgrade_rod() -> void:
+	if player.current_item == null:
+		show_upgrade_result("Select a rod first.", false)
+		return
+
+	var index: int = player.current_item.slot
+	var inventory: PlayerInventory = player.inventory
+
+	if index < 0 or index >= inventory.slots.size():
+		show_upgrade_result("Select a rod first.", false)
+		return
+
+	var entry: Dictionary = inventory.slots[index]
+	var rod: FishingRod = entry.get("item") as FishingRod
+
+	if rod == null:
+		show_upgrade_result("Select a rod first.", false)
+		return
+
+	var new_rod: FishingRod = rod.next_upgrade
+
+	if new_rod == null:
+		show_upgrade_result("%s is fully upgraded." % rod.rod_name,false)
+		return
+
+	# Protect against an accidentally incorrect resource setting.
+	if new_rod == rod or new_rod.purchase_price < 0:
+		show_upgrade_result("Invalid rod upgrade.", false)
+		return
+
+	var price: int = new_rod.purchase_price
+
+	if not player.wallet.can_afford(price):
+		show_upgrade_result("Need $%d." % price, false)
+		return
+
+	# The existing wallet rejects zero-cost spending.
+	# Skip the payment for a free upgrade.
+	if price > 0:
+		if not player.wallet.spend_money(price):
+			show_upgrade_result("Could not complete purchase.", false)
+			return
+
+	# Replace this exact slot, other rods and fish stay unchanged.
+	inventory.slots[index] = {"item": new_rod,"quantity": 1}
+
+	player.current_item.item = new_rod
+	player.equipped_rod = new_rod
+
+	# Preserve compatibility with your existing ownership tracking.
+	player.wallet.add_rod(new_rod)
+
+	inventory.changed.emit()
+
+	show_upgrade_result("Upgraded to %s for $%d." % [new_rod.rod_name, price],true)
+
+
+# Display the outcome in the existing shop label.
+func show_upgrade_result(message: String, success: bool) -> void:
+	upgrade_result.text = message
+
+	var color: Color = Color.RED
+	if success:
+		color = Color.GREEN
+
+	upgrade_result.add_theme_color_override("font_color", color)
+
 
 func _on_buy_pressed() -> void:
-	var rod = player.equipped_rod
-	if rod.level == 2:
-		upgrade_result.text = "Max Rod"
-		upgrade_result.add_theme_color_override("font_color", Color.RED)
-	else:
-		upgrade_rod(player.equipped_rod, player.wallet, player.inventory)
-	print(player.equipped_rod.rod_name)
+	upgrade_rod()
+
+
 
 func _on_sell_pressed() -> void:
 	sell_fish(player.wallet)
