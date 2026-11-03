@@ -7,6 +7,8 @@ var fishes: Dictionary = {
 	"trout": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn"
 }
 
+const BACKPACK_UI = preload("res://scripts/backpack_ui.gd")
+
 # Array where fish are added to
 var fish_spawned: Array[SwimmingFish] = []
 
@@ -14,6 +16,11 @@ var fish_spawned: Array[SwimmingFish] = []
 func _ready() -> void:
 	# Show player inventory in hotbar
 	$HudLayer/HudRoot/Hotbar.bind_player(player)
+	
+	# Backpack 
+	var backpack_ui = BACKPACK_UI.new()
+	$HudLayer/HudRoot.add_child(backpack_ui)
+	backpack_ui.bind_player(player)
 	
 	# Registers containers
 	SceneLoader.register("Level", %World/LevelRoot)

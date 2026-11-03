@@ -8,6 +8,7 @@ var shop_ui: Control
 var shop:= Shop.new()
 var sell_result: Label
 var upgrade_result: Label
+var backpack_buy_button: Button
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,7 +35,26 @@ func _on_button_pressed() -> void:
 		shop_ui.get_node("ColorRect/Close").pressed.connect(_on_close_pressed)
 		sell_result = shop_ui.get_node("ColorRect/Labels/SellResult")
 		upgrade_result = shop_ui.get_node("ColorRect/Labels/UpgradeResult")
+		backpack_buy_button = Button.new()
+		backpack_buy_button.text = "Backpack owned" if player.inventory.has_backpack else "Buy Backpack - $200"
+		backpack_buy_button.disabled = player.inventory.has_backpack
+		shop_ui.get_node("ColorRect/CenterContainer/Container").add_child(backpack_buy_button)
+		backpack_buy_button.pressed.connect(_on_backpack_buy_pressed)
 		
+
+func _on_backpack_buy_pressed() -> void:
+	if player.inventory.has_backpack:
+		show_upgrade_result("You already own a backpack.", false)
+		return
+
+	if not player.inventory.buy_backpack(player.wallet):
+		show_upgrade_result("Need $200 for a backpack.", false)
+		return
+
+	backpack_buy_button.text = "Backpack owned"
+	backpack_buy_button.disabled = true
+
+	show_upgrade_result("Backpack equipped! Press B to open.", true)
 
 # Sells selected fish and changes label to communicate to player
 func sell_fish(wallet: PlayerWallet):
