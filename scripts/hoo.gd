@@ -22,7 +22,7 @@ class ItemData:
 var current_item: ItemData
 
 func _ready() -> void:
-	wallet.balance = 5000
+	wallet.balance = 0
 	
 	# Fake Data Test
 	var rod: FishingRod = preload("res://src/gameplay/fishing/rods/basic_rod.tres")
