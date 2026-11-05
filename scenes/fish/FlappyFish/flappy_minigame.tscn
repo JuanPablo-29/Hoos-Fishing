@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://d1up2gjptlqh4"]
+
+[ext_resource type="Script" uid="uid://baqjse1k1a4hi" path="res://scripts/flappy/flappy_minigame.gd" id="1_r6wqa"]
+[ext_resource type="Script" uid="uid://ct6jaaq3k600m" path="res://scripts/flappy/flappy.gd" id="2_b2v06"]
+[ext_resource type="Texture2D" uid="uid://dp4r54eeji2ef" path="res://assets/Fish/flappy_fish.png" id="3_y5f7d"]
+[ext_resource type="Texture2D" uid="uid://c667s8yy1noap" path="res://assets/FishingBar/Fishing Bar.png" id="4_b2v06"]
+[ext_resource type="Texture2D" uid="uid://cqu8lky61ou7c" path="res://assets/FishingBar/pipe.png" id="5_y5f7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6527"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x84is"]
+size = Vector2(3.9731445, 35.09802)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6527"]
+size = Vector2(243.95752, 357.47034)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnvpu"]
+size = Vector2(230.64044, 16.575235)
+
+[node name="FlappyMinigame" type="Node2D" unique_id=1912362758 node_paths=PackedStringArray("pipe")]
+position = Vector2(-7.000001, 50)
+scale = Vector2(3.5138104, 2.2250104)
+script = ExtResource("1_r6wqa")
+pipe = NodePath("Area2D")
+
+[node name="Bird" type="CharacterBody2D" parent="." unique_id=2087135988]
+position = Vector2(22.134861, 33.619614)
+script = ExtResource("2_b2v06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird" unique_id=1830384128]
+scale = Vector2(0.35612687, 0.33795714)
+shape = SubResource("CircleShape2D_s6527")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird" unique_id=1797099317]
+scale = Vector2(0.01468427, 0.028534262)
+texture = ExtResource("3_y5f7d")
+
+[node name="FishingBar" type="Sprite2D" parent="." unique_id=785378124]
+z_index = -1
+texture_filter = 1
+position = Vector2(40.724617, 32.313694)
+scale = Vector2(2.8424933, 0.59673196)
+texture = ExtResource("4_b2v06")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=71085506]
+position = Vector2(83.261955, 42.584854)
+scale = Vector2(0.035829566, 0.07610143)
+
+[node name="PointArea" type="Area2D" parent="Area2D" unique_id=2018076449]
+position = Vector2(-2084.7295, -540.04224)
+scale = Vector2(27.909912, 13.140357)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/PointArea" unique_id=819729754]
+position = Vector2(74.297615, 42.05879)
+scale = Vector2(1.0000001, 1)
+shape = SubResource("RectangleShape2D_x84is")
+
+[node name="Pipe" type="Sprite2D" parent="Area2D" unique_id=346810229]
+position = Vector2(-0.00024414063, 0)
+scale = Vector2(0.9999998, 1)
+texture = ExtResource("5_y5f7d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1426528855]
+position = Vector2(-127.52356, -409.59302)
+shape = SubResource("RectangleShape2D_s6527")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1840381774]
+position = Vector2(-131.95398, 411.47473)
+scale = Vector2(1, 18.809036)
+shape = SubResource("RectangleShape2D_lnvpu")
+
+[node name="Start" type="Node2D" parent="." unique_id=1635454722]
+position = Vector2(75.09223, -3.1372533)
+scale = Vector2(1.0000001, 1)
+
+[node name="End" type="Node2D" parent="." unique_id=183812676]
+position = Vector2(-0.39731407, 67.76466)
+
+[node name="PipeTop" type="Node2D" parent="." unique_id=492831843]
+position = Vector2(74.49626, 23.843117)
+
+[node name="PipeBottom" type="Node2D" parent="." unique_id=1675533499]
+position = Vector2(74.694916, 41.098003)
+
+[node name="Score" type="Label" parent="." unique_id=1937278486]
+texture_filter = 1
+offset_left = -11.668243
+offset_top = 12.134773
+offset_right = 13.660389
+offset_bottom = 35.134773
+theme_override_constants/outline_size = 3
+text = "00"
+
+[node name="Goal" type="Label" parent="." unique_id=1667544502]
+texture_filter = 1
+offset_left = 72.855385
+offset_top = -1.3483047
+offset_right = 115.85538
+offset_bottom = 21.651695
+theme_override_constants/outline_size = 3
+text = "Goal"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D/PointArea" to="." method="_on_point_area_body_exited"]

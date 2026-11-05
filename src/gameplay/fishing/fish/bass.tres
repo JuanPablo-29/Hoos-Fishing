@@ -8,4 +8,5 @@ fish_name = "Bass"
 rarity = 1
 sell_value = 25
 catch_difficulty = 2.0
+spawn_weight = 30.0
 metadata/_custom_type_script = "uid://cdfjcdaflaq26"

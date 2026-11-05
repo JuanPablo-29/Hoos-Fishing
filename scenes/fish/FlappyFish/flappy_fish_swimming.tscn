@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://yq2i4uq2ppl5"]
+
+[ext_resource type="Script" uid="uid://cf8008buohdr7" path="res://src/gameplay/fishing/fish/swimming_fish.gd" id="1_qojqk"]
+[ext_resource type="Resource" uid="uid://bcoqautoouumn" path="res://scenes/fish/FlappyFish/flappy_fish.tres" id="2_sr4a4"]
+[ext_resource type="Texture2D" uid="uid://dp4r54eeji2ef" path="res://assets/Fish/flappy_fish.png" id="3_nth62"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s6527"]
+radius = 123.774895
+height = 284.01038
+
+[node name="FlappyFish" type="CharacterBody2D" unique_id=1474287995]
+scale = Vector2(0.11999998, 0.11999998)
+script = ExtResource("1_qojqk")
+fish_data = ExtResource("2_sr4a4")
+swim_speed = 200.0
+top_boundary = -300.0
+bottom_boundary = 400.0
+min_turn_time = 1.0
+max_turn_time = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1310203936]
+position = Vector2(-2.0000076, -5.0000114)
+scale = Vector2(0.58666664, 0.7042042)
+texture = ExtResource("3_nth62")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2028034068]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050765496]
+rotation = 1.5726013
+shape = SubResource("CapsuleShape2D_s6527")
+
+[node name="Timer" type="Timer" parent="." unique_id=877099125]

@@ -10,9 +10,14 @@ var player: Player
  
 # Sets name for fish scene paths
 var fishes: Dictionary = {
-	"bass": "res://src/gameplay/fishing/fish/bass_swimming.tscn",
-	"blue_gill": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
-	"trout": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn"
+	"bass": {"scene": "res://src/gameplay/fishing/fish/bass_swimming.tscn",
+		"data": preload("res://src/gameplay/fishing/fish/bass.tres")},
+	"blue_gill": {"scene": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
+		"data": preload("res://src/gameplay/fishing/fish/bluegill.tres"),},
+	"trout": { "scene": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn",
+		"data": preload("res://src/gameplay/fishing/fish/golden_trout.tres")},
+	"flappy": { "scene": "res://scenes/fish/FlappyFish/flappy_fish_swimming.tscn",
+		"data": preload("res://scenes/fish/FlappyFish/flappy_fish.tres")},
 }
 var fish_keys = fishes.keys()
 # Array where fish are added to
@@ -25,22 +30,25 @@ const MINIGAME_SCENE: PackedScene = preload("res://scenes/FishingMinigame.tscn")
 var minigame: Node2D = null
 var hooked_fish: SwimmingFish = null
  
+# Random Number Generator
+var rng := RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func spawn_initial_fish() -> void:
 	### Spawns fishes
 	## Blue gill
-	spawn_fish("blue_gill", 300, 200)
+	spawn_fish("flappy", 300, 200)
 	fish_spawned.back().swim_speed = 50
 	## Bass
-	spawn_fish("bass",300,200)
+	spawn_fish("flappy",300,200)
 	## Trout
-	spawn_fish("trout", 300, 200)
+	spawn_fish("flappy", 300, 200)
 	fish_spawned.back().swim_speed = 80
 	fish_spawned.back().min_turn_time = 1.5
 	fish_spawned.back().max_turn_time = 3.5
  
 func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
-	var fish = SceneLoader.spawn(fishes.get(fish_type), "Entity") as SwimmingFish
+	var fish = SceneLoader.spawn(fishes[fish_type]["scene"], "Entity") as SwimmingFish
 	fish.position = Vector2(x, y)
 	fish.player = player
 	fish.clicked.connect(_on_fish_clicked)
@@ -48,11 +56,17 @@ func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	fish_spawned.append(fish)
 	return fish
  
+func pick_weighted_fish() -> String:
+	var weights := PackedFloat32Array()
+	for key in fish_keys:
+		weights.append(fishes[key]["data"].spawn_weight)
+	return fish_keys[rng.rand_weighted(weights)]
+
 # Timer runs and spawns random fish on left or right every 5 seconds
 func _on_timer_timeout() -> void:
 	var sides = [-1, 1]
 	var side = sides.pick_random()
-	var fish_to_spawn = fish_keys.pick_random()
+	var fish_to_spawn = pick_weighted_fish()
 	spawn_fish(fish_to_spawn, player.position.x+(SPAWN_DISTANCE*side) , 150)
  
  
@@ -78,18 +92,24 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
  
 	# Instantiate manually (instead of SceneLoader.spawn) so auto_start can be turned off
 	# before the minigame's _ready() runs.
-	minigame = MINIGAME_SCENE.instantiate()
+	var scene: PackedScene = fish.fish_data.minigame_scene if fish.fish_data.minigame_scene else MINIGAME_SCENE
+	minigame = scene.instantiate()
 	minigame.auto_start = false
 	hud.add_child(minigame)
  
 	# Park it on the right side of the screen (the HUD doesn't move with the camera)
 	var screen: Vector2 = get_viewport().get_visible_rect().size
-	minigame.position = Vector2(screen.x - 40.0, screen.y * 0.5)
+	if scene == MINIGAME_SCENE:
+		minigame.position = Vector2(screen.x - 40.0, screen.y * 0.5)
+	else:
+		minigame.scale = Vector2(2.2, 2.2)
+		minigame.position = Vector2(80, 30)
  
 	# Better rods increase catch speed and make the catch zone larger
 	if rod != null:
-		minigame.catch_gain *= rod.catch_speed_multiplier
-		minigame.catch_zone_multiplier = rod.catch_zone_multiplier
+		if "catch_gain" in minigame:
+			minigame.catch_gain *= rod.catch_speed_multiplier
+			minigame.catch_zone_multiplier = rod.catch_zone_multiplier
  
 	# Fish.catch_difficulty runs 1.0 (bluegill) to 3.0 (golden trout);
 	# map that to the minigame's 0..1 difficulty scale.
