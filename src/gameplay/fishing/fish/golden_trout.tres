@@ -8,4 +8,5 @@ fish_name = "Golden Trout"
 rarity = 2
 sell_value = 100
 catch_difficulty = 3.0
+spawn_weight = 20.0
 metadata/_custom_type_script = "uid://cdfjcdaflaq26"

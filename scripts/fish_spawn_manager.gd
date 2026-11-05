@@ -10,11 +10,13 @@ var player: Player
 # Sets name for fish scene paths
 var fishes: Dictionary = {
 	"bass": {"scene": "res://src/gameplay/fishing/fish/bass_swimming.tscn",
-		"data": preload("res://src/gameplay/fishing/fish/bass_swimming.tscn")},
+		"data": preload("res://src/gameplay/fishing/fish/bass.tres")},
 	"blue_gill": {"scene": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
-		"data": preload("res://src/gameplay/fishing/fish/blue_gill_swimming.tscn"),},
+		"data": preload("res://src/gameplay/fishing/fish/bluegill.tres"),},
 	"trout": { "scene": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn",
-		"data": preload("res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn")},
+		"data": preload("res://src/gameplay/fishing/fish/golden_trout.tres")},
+	"flappy": { "scene": "res://scenes/fish/FlappyFish/flappy_fish_swimming.tscn",
+		"data": preload("res://scenes/fish/FlappyFish/flappy_fish.tres")},
 }
 var fish_keys = fishes.keys()
 # Array where fish are added to
@@ -28,6 +30,9 @@ const MINIGAME_SCENE: PackedScene = preload("res://scenes/FishingMinigame.tscn")
 var minigame: Node2D = null
 var hooked_fish: SwimmingFish = null
  
+# Random Number Generator
+var rng := RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func spawn_initial_fish() -> void:
 	### Spawns fishes
@@ -51,11 +56,17 @@ func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	fish_spawned.append(fish)
 	return fish
  
+func pick_weighted_fish() -> String:
+	var weights := PackedFloat32Array()
+	for key in fish_keys:
+		weights.append(fishes[key]["data"].spawn_weight)
+	return fish_keys[rng.rand_weighted(weights)]
+
 # Timer runs and spawns random fish on left or right every 5 seconds
 func _on_timer_timeout() -> void:
 	var sides = [-1, 1]
 	var side = sides.pick_random()
-	var fish_to_spawn = fish_keys.pick_random()
+	var fish_to_spawn = pick_weighted_fish()
 	spawn_fish(fish_to_spawn, player.position.x+(SPAWN_DISTANCE*side) , 150)
  
  

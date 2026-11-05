@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Fish" format=3 uid="uid://bcoqautoouumn"]
+
+[ext_resource type="Script" uid="uid://cdfjcdaflaq26" path="res://src/gameplay/fishing/fish/fish.gd" id="1_dlie8"]
+
+[resource]
+script = ExtResource("1_dlie8")
+fish_name = "Flappy"
+rarity = 2
+sell_value = 200
+spawn_weight = 100.0
+metadata/_custom_type_script = "uid://cdfjcdaflaq26"

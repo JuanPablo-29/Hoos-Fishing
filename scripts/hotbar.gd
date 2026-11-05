@@ -11,6 +11,7 @@ var inventory: PlayerInventory
 const BLUEGILL_ICON = preload("res://assets/Fish/bluegill.png")
 const BASS_ICON = preload("res://assets/Fish/bass.png")
 const TROUT_ICON = preload("res://assets/Fish/golden_trout.png")
+const FLAPPY_ICON = preload("res://assets/Fish/flappy_fish.png")
 
 # Connect display to players inventory
 func bind_player(value: Player) -> void:
@@ -96,6 +97,8 @@ func update_hotbar() -> void:
 
 				"golden_trout.tres":
 					icon.texture = TROUT_ICON
+				"flappy_fish.tres":
+					icon.texture = FLAPPY_ICON
 
 			# Show a number only when there is more than one.
 			var quantity: int = int(entry["quantity"])
