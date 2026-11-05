@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwajj6ve6cd01"]
+[gd_scene format=3 uid="uid://bwajj6ve6cd01"]
 
 [ext_resource type="Script" uid="uid://i17fgkpmbiky" path="res://scripts/fish_spawn_manager.gd" id="1_dosfu"]
 
-[node name="FishSpawnManager" type="Node" node_paths=PackedStringArray("timer")]
+[node name="FishSpawnManager" type="Node" unique_id=1811010555 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_dosfu")
 timer = NodePath("Timer")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="Timer" type="Timer" parent="." unique_id=1059676795]
+wait_time = 15.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

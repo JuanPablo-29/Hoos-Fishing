@@ -1,3 +1,4 @@
+
 extends Node2D
 var player: Player
 @export var sprite: ColorRect
@@ -20,18 +21,42 @@ func _process(delta: float) -> void:
 	else:
 		sprite.color = Color.BROWN
 		close_enough = false
-	button.disabled = !close_enough
+
+	# Disable the shop button when the player is too far away or fishing
+	button.disabled = !close_enough or player.is_fishing
 
 	# Refresh the countdown while the Tasks tab is visible
-	if shop_ui and shop_ui.get_node("Tabs/Tasks").visible:
+	if is_instance_valid(shop_ui) and shop_ui.get_node("ColorRect/Tabs/Tasks").visible:
 		_refresh_task_page()
 
-	if player.velocity.x != 0 && shop_ui:
+	# Close the shop if the player starts fishing or moves away
+	if is_instance_valid(shop_ui) and (player.is_fishing or player.velocity.x != 0):
 		shop_ui.queue_free()
+		shop_ui = null
 
 
 # Opens shop ui and sets variables and connects buttons
 func _on_button_pressed() -> void:
+	if not is_instance_valid(shop_ui):
+		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
+
+		shop_ui.get_node("ColorRect/Tabs/Shop/Buy").pressed.connect(_on_buy_pressed)
+		shop_ui.get_node("ColorRect/Tabs/Shop/Sell").pressed.connect(_on_sell_pressed)
+		shop_ui.get_node("Close").pressed.connect(_on_close_pressed)
+
+		sell_result = shop_ui.get_node("ColorRect/Tabs/Shop/Result")
+		upgrade_result = shop_ui.get_node("ColorRect/Tabs/Shop/Result")
+
+		# The backpack button is part of the Shop tab. Show whether it is owned
+		backpack_buy_button = shop_ui.get_node("ColorRect/Tabs/Shop/Backpack")
+		backpack_buy_button.text = "Backpack owned" if player.inventory.has_backpack else "Buy Backpack - $200"
+		backpack_buy_button.disabled = player.inventory.has_backpack
+		backpack_buy_button.pressed.connect(_on_backpack_buy_pressed)
+
+		# Connect the task controls each time a new shop window opens.
+		shop_ui.get_node("ColorRect/Tabs/Tasks/Action").pressed.connect(_on_task_action)
+		shop_ui.get_node("ColorRect/Tabs/Tasks/Reroll").pressed.connect(_on_reroll)
+		_refresh_task_page()
 	if !shop_ui:
 		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
 		shop_ui.get_node("Tabs/Shop/Buy").pressed.connect(_on_buy_pressed)
@@ -170,20 +195,20 @@ func _on_sell_pressed() -> void:
 
 
 func _on_close_pressed() -> void:
-	shop_ui.queue_free()
+	if is_instance_valid(shop_ui):
+		shop_ui.queue_free()
+		shop_ui = null
 
 
 # Read the player's task board so reopening the shop shows the same progress
 func _refresh_task_page() -> void:
-	var page := shop_ui.get_node("Tabs/Tasks")
+	var page := shop_ui.get_node("ColorRect/Tabs/Tasks")
 	var board: TaskBoard = player.task_board
 
 	page.get_node("Objective").text = board.description()
 	page.get_node("Message").text = board.message
 
-	var status: String = "Progress %d/%d   |   Reward $%d" % [
-		board.progress, board.goal, board.reward()
-	]
+	var status: String = "Progress %d/%d\nReward $%d" % [board.progress, board.goal, board.reward()]
 
 	# Show the remaining seconds for an active timed task
 	if board.state == TaskBoard.State.ACTIVE and board.seconds_left > 0:

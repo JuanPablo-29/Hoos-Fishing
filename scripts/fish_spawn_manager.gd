@@ -97,6 +97,7 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
  
 	minigame.finished.connect(_on_minigame_finished)
 	minigame.start(clampf(difficulty, 0.0, 1.0))
+	player.is_fishing = true
  
  
 func _on_minigame_finished(success: bool) -> void:
@@ -105,6 +106,7 @@ func _on_minigame_finished(success: bool) -> void:
 	minigame.queue_free()
 	minigame = null
 	hooked_fish = null
+	player.is_fishing = false
  
 	# The fish may have been removed while the minigame was running
 	if not is_instance_valid(fish):
