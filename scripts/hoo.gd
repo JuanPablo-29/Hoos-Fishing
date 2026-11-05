@@ -4,6 +4,8 @@ extends CharacterBody2D
 var direction : Vector2
 var wallet := PlayerWallet.new()
 
+var is_fishing:= false
+
 # Testing for hootbar visual
 var inventory := PlayerInventory.new()
 var catch_tracker := CatchTracker.new()
