@@ -45,7 +45,11 @@ func _on_point_area_body_exited(body: Node2D) -> void:
 		if score >= goal:
 			_finish(true)
 
+var active:= true
 func _finish(success: bool) -> void:
-	#active = false
+	if not active:
+		return
+	active = false
+	$Bird.flying=false
 	print("Caught it!" if success else "It got away...")
 	finished.emit(success)

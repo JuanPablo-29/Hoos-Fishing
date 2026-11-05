@@ -198,6 +198,7 @@ func _on_sell_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	if is_instance_valid(shop_ui):
+		player.is_shopping = false
 		shop_ui.queue_free()
 		shop_ui = null
 
