@@ -10,7 +10,7 @@ var is_fishing:= false
 var inventory := PlayerInventory.new()
 var catch_tracker := CatchTracker.new()
 var equipped_rod: FishingRod
-@export var start_with_demo_inventory: bool = true
+@export var start_with_demo_inventory: bool = false
 
 
 
