@@ -1,25 +1,29 @@
 class_name  Player
 extends CharacterBody2D
+
 @export var speed : float = 500
+@export var start_with_demo_inventory: bool = true
+@export var wallet_ui: Control
+
 var direction : Vector2
 var wallet := PlayerWallet.new()
-
-# Testing for hootbar visual
 var inventory := PlayerInventory.new()
 var catch_tracker := CatchTracker.new()
+var task_board := TaskBoard.new()
 var equipped_rod: FishingRod
-@export var start_with_demo_inventory: bool = true
 
-
-
-@export var wallet_ui: Control
 
 class ItemData:
 	var item: Resource
 	var slot: int
 var current_item: ItemData
 
+@onready var sprite: AnimatedSprite2D = $Sprite2D
+
 func _ready() -> void:
+	# Each stored catch is reported to the task board once
+	catch_tracker.fish_caught.connect(task_board.record_catch)
+	
 	wallet.balance = 5000
 	
 	# Fake Data Test
@@ -33,9 +37,9 @@ func _ready() -> void:
 		inventory.add_item(preload("res://src/gameplay/fishing/fish/bass.tres"), 3)
 
 func _process(delta: float) -> void:
+	# Timed tasks continue while player is away from shop
+	task_board.advance_time(delta)
 	wallet_ui.get_child(0).text = "$%d" % wallet.balance
-
-@onready var sprite: AnimatedSprite2D = $Sprite2D
 
 func _physics_process(delta) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
