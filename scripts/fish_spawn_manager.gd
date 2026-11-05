@@ -9,9 +9,12 @@ var player: Player
  
 # Sets name for fish scene paths
 var fishes: Dictionary = {
-	"bass": "res://src/gameplay/fishing/fish/bass_swimming.tscn",
-	"blue_gill": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
-	"trout": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn"
+	"bass": {"scene": "res://src/gameplay/fishing/fish/bass_swimming.tscn",
+		"data": preload("res://src/gameplay/fishing/fish/bass_swimming.tscn")},
+	"blue_gill": {"scene": "res://src/gameplay/fishing/fish/blue_gill_swimming.tscn",
+		"data": preload("res://src/gameplay/fishing/fish/blue_gill_swimming.tscn"),},
+	"trout": { "scene": "res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn",
+		"data": preload("res://src/gameplay/fishing/fish/golden_trout_swimming_fish.tscn")},
 }
 var fish_keys = fishes.keys()
 # Array where fish are added to
@@ -40,7 +43,7 @@ func spawn_initial_fish() -> void:
 	fish_spawned.back().max_turn_time = 3.5
  
 func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
-	var fish = SceneLoader.spawn(fishes.get(fish_type), "Entity") as SwimmingFish
+	var fish = SceneLoader.spawn(fishes[fish_type]["scene"], "Entity") as SwimmingFish
 	fish.position = Vector2(x, y)
 	fish.player = player
 	fish.clicked.connect(_on_fish_clicked)
