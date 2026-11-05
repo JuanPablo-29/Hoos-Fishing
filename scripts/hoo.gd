@@ -10,7 +10,7 @@ var is_fishing:= false
 var inventory := PlayerInventory.new()
 var catch_tracker := CatchTracker.new()
 var equipped_rod: FishingRod
-@export var start_with_demo_inventory: bool = true
+@export var start_with_demo_inventory: bool = false
 
 
 
@@ -22,7 +22,7 @@ class ItemData:
 var current_item: ItemData
 
 func _ready() -> void:
-	wallet.balance = 5000
+	wallet.balance = 0
 	
 	# Fake Data Test
 	var rod: FishingRod = preload("res://src/gameplay/fishing/rods/basic_rod.tres")
@@ -47,8 +47,9 @@ func _physics_process(delta) -> void:
 		velocity = direction * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
-	move_and_slide()
-	update_animation()
+	if !is_fishing:
+		move_and_slide()
+		update_animation()
 
 func update_animation() -> void:
 	if direction.x != 0:

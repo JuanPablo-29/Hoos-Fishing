@@ -26,10 +26,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = -50.0
-offset_right = 32.0
-offset_bottom = 50.0
+offset_top = -55.0
+offset_right = 200.0
+offset_bottom = 45.0
 grow_vertical = 2
 
 [node name="Container" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=1698661679]
@@ -86,20 +85,20 @@ text = "x"
 [node name="Labels" type="Node" parent="ColorRect" unique_id=1462193202]
 
 [node name="Description" type="Label" parent="ColorRect/Labels" unique_id=890870106]
-offset_left = 133.0
-offset_top = 45.0
-offset_right = 261.0
-offset_bottom = 68.0
+offset_left = 142.0
+offset_top = 24.0
+offset_right = 270.0
+offset_bottom = 47.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 10
-text = "Select fish in hotbar to sell"
+text = "(Select fish in hotbar to sell)"
 
 [node name="SellResult" type="Label" parent="ColorRect/Labels" unique_id=717130037]
-offset_left = 137.0
-offset_top = 71.0
-offset_right = 177.0
-offset_bottom = 94.0
+offset_left = 128.0
+offset_top = 45.0
+offset_right = 168.0
+offset_bottom = 68.0
 
 [node name="UpgradeResult" type="Label" parent="ColorRect/Labels" unique_id=1818179505]
 offset_left = 99.0
