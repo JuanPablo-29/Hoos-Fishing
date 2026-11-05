@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d1up2gjptlqh4"]
+
+[ext_resource type="Script" uid="uid://baqjse1k1a4hi" path="res://scripts/flappy/flappy_minigame.gd" id="1_r6wqa"]
+[ext_resource type="Script" uid="uid://ct6jaaq3k600m" path="res://scripts/flappy/flappy.gd" id="2_b2v06"]
+[ext_resource type="Texture2D" uid="uid://dp4r54eeji2ef" path="res://assets/Fish/flappy_fish.png" id="3_y5f7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6527"]
+
+[node name="FlappyMinigame" type="Node2D" unique_id=1912362758]
+scale = Vector2(5.03381, 3.1875026)
+script = ExtResource("1_r6wqa")
+
+[node name="Bird" type="CharacterBody2D" parent="." unique_id=2087135988]
+position = Vector2(38.738056, 31.372524)
+motion_mode = 1
+script = ExtResource("2_b2v06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird" unique_id=1830384128]
+scale = Vector2(0.5268817, 0.5)
+shape = SubResource("CircleShape2D_s6527")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird" unique_id=1797099317]
+scale = Vector2(0.01468427, 0.028534262)
+texture = ExtResource("3_y5f7d")
