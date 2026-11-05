@@ -47,8 +47,9 @@ func _physics_process(delta) -> void:
 		velocity = direction * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
-	move_and_slide()
-	update_animation()
+	if !is_fishing:
+		move_and_slide()
+		update_animation()
 
 func update_animation() -> void:
 	if direction.x != 0:
