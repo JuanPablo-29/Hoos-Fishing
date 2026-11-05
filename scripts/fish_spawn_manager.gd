@@ -1,5 +1,6 @@
 class_name Manager
 extends Node
+
 # Reference to player, set from main_game.gd
 var player: Player
 @export var timer: Timer
@@ -18,7 +19,6 @@ var fish_keys = fishes.keys()
 var fish_spawned: Array[SwimmingFish] = []
  
 const SPAWN_DISTANCE = 250
- 
 const MINIGAME_SCENE: PackedScene = preload("res://scenes/FishingMinigame.tscn")
  
 # The minigame currently on screen (null when not fishing) and the fish it's for
@@ -118,6 +118,7 @@ func _on_minigame_finished(success: bool) -> void:
 		_catch_fish(fish)
 	else:
 		print("The %s swam away..." % fish.fish_data.fish_name)
+		player.task_board.record_failure()
 		fish.flee()
  
  
@@ -126,6 +127,7 @@ func _catch_fish(fish: SwimmingFish) -> void:
 	if added == 0:
 		# All hotbar slots are taken by other items
 		print("Inventory full! The %s got away." % fish.fish_data.fish_name)
+		player.task_board.record_failure()
 		fish.flee()
 		return
 	
