@@ -29,7 +29,7 @@ func _ready() -> void:
 	# Each stored catch is reported to the task board once
 	catch_tracker.fish_caught.connect(task_board.record_catch)
 
-	wallet.balance = 10000
+	wallet.balance = 0
 
 	# Fake Data Test
 	var rod: FishingRod = preload("res://src/gameplay/fishing/rods/basic_rod.tres")

@@ -122,11 +122,11 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
  
 func _on_minigame_finished(success: bool) -> void:
 	var fish: SwimmingFish = hooked_fish
+	player.is_fishing = false
  
 	minigame.queue_free()
 	minigame = null
 	hooked_fish = null
-	player.is_fishing = false
  
 	# The fish may have been removed while the minigame was running
 	if not is_instance_valid(fish):
