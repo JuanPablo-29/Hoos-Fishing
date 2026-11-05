@@ -20,8 +20,8 @@ func _process(delta: float) -> void:
 	else:
 		sprite.color = Color.BROWN
 		close_enough = false
-	button.disabled = !close_enough
-	if player.velocity.x != 0 && shop_ui:
+	button.disabled = !close_enough or player.is_fishing
+	if (player.is_fishing or player.velocity.x != 0) && shop_ui:
 		shop_ui.queue_free()
 		
 	
