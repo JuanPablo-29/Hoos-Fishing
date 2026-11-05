@@ -37,12 +37,12 @@ var rng := RandomNumberGenerator.new()
 func spawn_initial_fish() -> void:
 	### Spawns fishes
 	## Blue gill
-	spawn_fish("blue_gill", 300, 200)
+	spawn_fish("flappy", 300, 200)
 	fish_spawned.back().swim_speed = 50
 	## Bass
-	spawn_fish("bass",300,200)
+	spawn_fish("flappy",300,200)
 	## Trout
-	spawn_fish("trout", 300, 200)
+	spawn_fish("flappy", 300, 200)
 	fish_spawned.back().swim_speed = 80
 	fish_spawned.back().min_turn_time = 1.5
 	fish_spawned.back().max_turn_time = 3.5
@@ -92,18 +92,24 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
  
 	# Instantiate manually (instead of SceneLoader.spawn) so auto_start can be turned off
 	# before the minigame's _ready() runs.
-	minigame = MINIGAME_SCENE.instantiate()
+	var scene: PackedScene = fish.fish_data.minigame_scene if fish.fish_data.minigame_scene else MINIGAME_SCENE
+	minigame = scene.instantiate()
 	minigame.auto_start = false
 	hud.add_child(minigame)
  
 	# Park it on the right side of the screen (the HUD doesn't move with the camera)
 	var screen: Vector2 = get_viewport().get_visible_rect().size
-	minigame.position = Vector2(screen.x - 40.0, screen.y * 0.5)
+	if scene == MINIGAME_SCENE:
+		minigame.position = Vector2(screen.x - 40.0, screen.y * 0.5)
+	else:
+		minigame.scale = Vector2(2.2, 2.2)
+		minigame.position = Vector2(80, 30)
  
 	# Better rods increase catch speed and make the catch zone larger
 	if rod != null:
-		minigame.catch_gain *= rod.catch_speed_multiplier
-		minigame.catch_zone_multiplier = rod.catch_zone_multiplier
+		if "catch_gain" in minigame:
+			minigame.catch_gain *= rod.catch_speed_multiplier
+			minigame.catch_zone_multiplier = rod.catch_zone_multiplier
  
 	# Fish.catch_difficulty runs 1.0 (bluegill) to 3.0 (golden trout);
 	# map that to the minigame's 0..1 difficulty scale.

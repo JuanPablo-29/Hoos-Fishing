@@ -12,3 +12,4 @@ enum Rarity {
 @export var sell_value: int = 10
 @export var catch_difficulty: float = 1.0
 @export var spawn_weight: float = 0.0
+@export var minigame_scene: PackedScene
