@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_xd2fl")
 fish_name = "Bluegill"
-spawn_weight = 50.0
+spawn_weight = 40.0
 metadata/_custom_type_script = "uid://cdfjcdaflaq26"
