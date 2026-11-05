@@ -180,7 +180,7 @@ func _input(event: InputEvent) -> void:
 	if player == null:
 		return
 
-	if event is InputEventKey:
+	if event is InputEventKey and !player.is_fishing and !player.is_shopping:
 		if event.pressed and not event.echo:
 			if event.physical_keycode == KEY_B:
 				_toggle()

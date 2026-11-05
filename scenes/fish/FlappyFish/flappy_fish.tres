@@ -8,6 +8,6 @@ script = ExtResource("1_dlie8")
 fish_name = "Flappy"
 rarity = 2
 sell_value = 200
-spawn_weight = 5.0
+spawn_weight = 10.0
 minigame_scene = ExtResource("1_mqfm3")
 metadata/_custom_type_script = "uid://cdfjcdaflaq26"

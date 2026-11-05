@@ -10,6 +10,7 @@ var direction : Vector2
 var wallet := PlayerWallet.new()
 
 var is_fishing := false
+var is_shopping := false
 
 # Testing for hootbar visual
 var inventory := PlayerInventory.new()
@@ -28,7 +29,7 @@ func _ready() -> void:
 	# Each stored catch is reported to the task board once
 	catch_tracker.fish_caught.connect(task_board.record_catch)
 
-	wallet.balance = 0
+	wallet.balance = 10000
 
 	# Fake Data Test
 	var rod: FishingRod = preload("res://src/gameplay/fishing/rods/basic_rod.tres")

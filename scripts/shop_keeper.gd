@@ -33,11 +33,13 @@ func _process(delta: float) -> void:
 	if is_instance_valid(shop_ui) and (player.is_fishing or player.velocity.x != 0):
 		shop_ui.queue_free()
 		shop_ui = null
+		player.is_shopping = false
 
 
 # Opens shop ui and sets variables and connects buttons
 func _on_button_pressed() -> void:
 	if not is_instance_valid(shop_ui):
+		player.is_shopping = true
 		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
 
 		shop_ui.get_node("ColorRect/Tabs/Shop/Buy").pressed.connect(_on_buy_pressed)
