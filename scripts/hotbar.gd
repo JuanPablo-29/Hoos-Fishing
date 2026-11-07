@@ -13,6 +13,14 @@ const BASS_ICON = preload("res://assets/Fish/bass.png")
 const TROUT_ICON = preload("res://assets/Fish/golden_trout.png")
 const FLAPPY_ICON = preload("res://assets/Fish/flappy_fish.png")
 
+var icons: Dictionary = {
+	"bluegill": preload("res://assets/Fish/bluegill.png"),
+	"bass": preload("res://assets/Fish/bass.png"),
+	"golden_trout": preload("res://assets/Fish/golden_trout.png"),
+	"flappy_fish": preload("res://assets/Fish/flappy_fish.png")
+}
+
+
 # Connect display to players inventory
 func bind_player(value: Player) -> void:
 	player = value
@@ -88,17 +96,7 @@ func update_hotbar() -> void:
 
 		elif item is Fish:
 			# Choose the picture for the fish.
-			match item.resource_path.get_file():
-				"bluegill.tres":
-					icon.texture = BLUEGILL_ICON
-
-				"bass.tres":
-					icon.texture = BASS_ICON
-
-				"golden_trout.tres":
-					icon.texture = TROUT_ICON
-				"flappy_fish.tres":
-					icon.texture = FLAPPY_ICON
+			icon.texture = icons[item.resource_path.get_file().replace(".tres", "")]
 
 			# Show a number only when there is more than one.
 			var quantity: int = int(entry["quantity"])
