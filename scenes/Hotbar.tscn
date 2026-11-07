@@ -25,12 +25,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -56.0
-offset_top = -44.0
-offset_right = 56.0
-offset_bottom = -8.0
+offset_left = -185.0
+offset_top = -208.0
+offset_right = -147.0
+offset_bottom = -99.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_ndj5e")
 
 [node name="HotbarPanel" type="MarginContainer" parent="." unique_id=1756292994]
@@ -42,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Slots" type="HBoxContainer" parent="HotbarPanel" unique_id=1577980335]
+[node name="Slots" type="VBoxContainer" parent="HotbarPanel" unique_id=1227795651]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 2
@@ -77,6 +77,15 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
 
+[node name="Label" type="Label" parent="HotbarPanel/Slots/Slot0" unique_id=247711567]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 17.5
+offset_right = 17.0
+offset_bottom = 40.5
+theme_override_constants/outline_size = 4
+text = "1"
+
 [node name="Slot1" type="Button" parent="HotbarPanel/Slots" unique_id=1782181432]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
@@ -85,6 +94,15 @@ mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_50dpr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jhbyi")
 toggle_mode = true
+
+[node name="Label2" type="Label" parent="HotbarPanel/Slots/Slot1" unique_id=1591598359]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 17.5
+offset_right = 17.0
+offset_bottom = 40.5
+theme_override_constants/outline_size = 4
+text = "2"
 
 [node name="Icon" type="TextureRect" parent="HotbarPanel/Slots/Slot1" unique_id=786533366]
 texture_filter = 1
@@ -137,10 +155,20 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Label3" type="Label" parent="HotbarPanel/Slots/Slot2" unique_id=1704645923]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 16.5
+offset_right = 18.0
+offset_bottom = 39.5
+theme_override_constants/outline_size = 4
+text = "3"
+
 [node name="SelectedItemLabel" type="Label" parent="." unique_id=694290797]
 layout_mode = 0
-offset_left = 5.0
-offset_top = -20.0
-offset_right = 111.0
-offset_bottom = 3.0
+offset_left = 133.0
+offset_top = -3.0
+offset_right = 239.0
+offset_bottom = 20.0
+theme_override_constants/outline_size = 4
 horizontal_alignment = 1
