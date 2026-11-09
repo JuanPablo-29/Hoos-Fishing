@@ -51,6 +51,8 @@ func spawn_initial_fish() -> void:
 func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	var fish = SceneLoader.spawn(fishes[fish_type]["scene"], "Entity") as SwimmingFish
 	fish.position = Vector2(x, y)
+	fish.left_boundary = x - 150
+	fish.right_boundary = x + 150
 	fish.player = player
 	fish.clicked.connect(_on_fish_clicked)
 	# Appends newest fish to array, access with fish_spawned.back()
