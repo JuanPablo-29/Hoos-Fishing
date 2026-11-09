@@ -39,3 +39,4 @@ func _ready() -> void:
 	buoy_middle.set_offset(shop.position)
 	buoy_middle.set_bounds()
 	fish_manager.buoy = buoy_middle
+	shop.buoy = buoy_middle

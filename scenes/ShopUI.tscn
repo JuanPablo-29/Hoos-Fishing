@@ -1,9 +1,4 @@
-
 [gd_scene format=3 uid="uid://dcpkigr4inxgj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qq7pr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6527"]
 
 [sub_resource type="StyleBoxFlat" id="ShopPanel"]
 content_margin_left = 6.0
@@ -11,16 +6,6 @@ content_margin_top = 6.0
 content_margin_right = 6.0
 content_margin_bottom = 6.0
 bg_color = Color(0.47453344, 0.19080368, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="SelectedTab"]
-content_margin_left = 9.0
-content_margin_top = 4.0
-content_margin_right = 9.0
-content_margin_bottom = 4.0
-bg_color = Color(0.47453344, 0.19080368, 0, 1)
-border_width_top = 1
-border_color = Color(0.76, 0.55, 0.39, 1)
-expand_margin_top = 0.0
 
 [sub_resource type="StyleBoxFlat" id="UnselectedTab"]
 content_margin_left = 9.0
@@ -30,7 +15,6 @@ content_margin_bottom = 4.0
 bg_color = Color(0.22, 0.12, 0.07, 1)
 border_width_top = 1
 border_color = Color(0.22, 0.12, 0.07, 1)
-expand_margin_top = 0.0
 
 [sub_resource type="StyleBoxFlat" id="HoveredTab"]
 content_margin_left = 9.0
@@ -40,14 +24,26 @@ content_margin_bottom = 4.0
 bg_color = Color(0.34, 0.17, 0.08, 1)
 border_width_top = 1
 border_color = Color(0.34, 0.17, 0.08, 1)
-expand_margin_top = 0.0
+
+[sub_resource type="StyleBoxFlat" id="SelectedTab"]
+content_margin_left = 9.0
+content_margin_top = 4.0
+content_margin_right = 9.0
+content_margin_bottom = 4.0
+bg_color = Color(0.47453344, 0.19080368, 0, 1)
+border_width_top = 1
+border_color = Color(0.76, 0.55, 0.39, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qq7pr"]
 
 [sub_resource type="StyleBoxFlat" id="ShopButton"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.20, 0.13, 0.10, 1)
+bg_color = Color(0.2, 0.13, 0.1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6527"]
 
 [node name="ShopUi" type="Control" unique_id=1084742543]
 layout_mode = 3
@@ -76,12 +72,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_colors/font_unselected_color = Color(0.78, 0.72, 0.68, 1)
-theme_override_font_sizes/font_size = 11
 theme_override_constants/tab_separation = 1
+theme_override_font_sizes/font_size = 11
 theme_override_styles/panel = SubResource("ShopPanel")
-theme_override_styles/tab_selected = SubResource("SelectedTab")
 theme_override_styles/tab_unselected = SubResource("UnselectedTab")
 theme_override_styles/tab_hovered = SubResource("HoveredTab")
+theme_override_styles/tab_selected = SubResource("SelectedTab")
 theme_override_styles/tab_disabled = SubResource("UnselectedTab")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_qq7pr")
 current_tab = 0
@@ -97,8 +93,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 9
 text = "Select a hotbar item to sell or upgrade."
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Sell" type="Button" parent="ColorRect/Tabs/Shop" unique_id=1319682476]
 layout_mode = 2
@@ -132,8 +128,8 @@ text = "Buy Backpack"
 [node name="Result" type="Label" parent="ColorRect/Tabs/Shop" unique_id=720944480]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Tasks" type="VBoxContainer" parent="ColorRect/Tabs" unique_id=1132349457]
 visible = false
@@ -144,14 +140,14 @@ metadata/_tab_index = 1
 [node name="Objective" type="Label" parent="ColorRect/Tabs/Tasks" unique_id=1489640322]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Progress" type="Label" parent="ColorRect/Tabs/Tasks" unique_id=838956260]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Action" type="Button" parent="ColorRect/Tabs/Tasks" unique_id=118227678]
 layout_mode = 2
@@ -172,8 +168,22 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
 [node name="Message" type="Label" parent="ColorRect/Tabs/Tasks" unique_id=1960342135]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Boat" type="VBoxContainer" parent="ColorRect/Tabs" unique_id=193310251]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Level" type="Label" parent="ColorRect/Tabs/Boat" unique_id=425455665]
+layout_mode = 2
+
+[node name="Upgrade" type="Button" parent="ColorRect/Tabs/Boat" unique_id=198219368]
+layout_mode = 2
+
+[node name="Result" type="Label" parent="ColorRect/Tabs/Boat" unique_id=1066737358]
+layout_mode = 2
 
 [node name="Close" type="Button" parent="." unique_id=1621520780]
 layout_mode = 1
@@ -181,11 +191,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -14.0
-offset_top = 0.0
-offset_right = 0.0
 offset_bottom = 15.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 6
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s6527")
 text = "x"
-

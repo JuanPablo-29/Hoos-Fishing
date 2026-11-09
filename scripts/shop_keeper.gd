@@ -10,7 +10,8 @@ var shop:= Shop.new()
 var sell_result: Label
 var upgrade_result: Label
 var backpack_buy_button: Button
-
+var buoy
+const BOAT_PRICES := [200, 500]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta: float) -> void:
@@ -59,6 +60,10 @@ func _on_button_pressed() -> void:
 		shop_ui.get_node("ColorRect/Tabs/Tasks/Action").pressed.connect(_on_task_action)
 		shop_ui.get_node("ColorRect/Tabs/Tasks/Reroll").pressed.connect(_on_reroll)
 		_refresh_task_page()
+		
+		# Connect boat button
+		shop_ui.get_node("ColorRect/Tabs/Boat/Upgrade").pressed.connect(_on_boat_upgrade_pressed)
+		_refresh_boat_page()
 	if !shop_ui:
 		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
 		shop_ui.get_node("Tabs/Shop/Buy").pressed.connect(_on_buy_pressed)
@@ -252,3 +257,24 @@ func _on_reroll() -> void:
 	# The board checks the balance before charging for a different offer
 	player.task_board.reroll(player.wallet)
 	_refresh_task_page()
+
+func _refresh_boat_page() -> void:
+	var level_label = shop_ui.get_node("ColorRect/Tabs/Boat/Level")
+	var button = shop_ui.get_node("ColorRect/Tabs/Boat/Upgrade")
+	level_label.text = "Boat level: %d" % player.boat_level
+	if player.boat_level >= BOAT_PRICES.size():
+		button.text = "Boat fully upgraded"
+		button.disabled = true
+	else:
+		button.text = "Upgrade Boat - $%d" % BOAT_PRICES[player.boat_level]
+
+func _on_boat_upgrade_pressed() -> void:
+	var result = shop_ui.get_node("ColorRect/Tabs/Boat/Result")
+	var price = BOAT_PRICES[player.boat_level]
+	if not player.wallet.spend_money(price):
+		result.text = "Need $%d." % price
+		return
+	player.boat_level += 1
+	buoy.remove_buoy(player.boat_level)   # opens the next pair
+	result.text = "Boat upgraded!"
+	_refresh_boat_page()

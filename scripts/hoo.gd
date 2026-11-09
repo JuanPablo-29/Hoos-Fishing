@@ -26,6 +26,8 @@ var current_item: ItemData
 const BoatRigScript := preload("res://scripts/boat_rig.gd")
 @onready var boat_rig: BoatRigScript = $BoatRig
 
+var boat_level:= 0
+
 func _ready() -> void:
 	# Each stored catch is reported to the task board once
 	catch_tracker.fish_caught.connect(task_board.record_catch)
