@@ -8,6 +8,38 @@
 [ext_resource type="Texture2D" uid="uid://cfb724j14m1ik" path="res://assets/Background Images/Trees_1.png" id="6_43vpv"]
 [ext_resource type="Texture2D" uid="uid://dqk72y0xgwsdm" path="res://assets/Background Images/Grass.png" id="7_47vcq"]
 [ext_resource type="Texture2D" uid="uid://daaerftfr0k8j" path="res://assets/Background Images/Water.png" id="8_ps3vh"]
+[ext_resource type="Shader" path="res://shaders/water_reflection.gdshader" id="9_reflect"]
+[ext_resource type="Shader" path="res://shaders/water_shimmer.gdshader" id="10_shimmer"]
+[ext_resource type="Script" path="res://scripts/water_shimmer.gd" id="11_shimmerscript"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_reflect"]
+shader = ExtResource("9_reflect")
+shader_parameter/use_world_depth = false
+shader_parameter/axis_local_y = -17.0
+shader_parameter/pixel_size = 1.0
+shader_parameter/fade_depth = 34.0
+shader_parameter/max_alpha = 0.32
+shader_parameter/water_tint = Color(0.27, 0.32, 0.62, 1)
+shader_parameter/tint_amount = 0.4
+shader_parameter/ripple_px = 2.0
+shader_parameter/ripple_speed = 0.45
+shader_parameter/ripple_freq = 0.75
+shader_parameter/gap_amount = 0.35
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shimmer"]
+shader = ExtResource("10_shimmer")
+shader_parameter/area_size = Vector2(384, 125)
+shader_parameter/glint_color = Color(0.86, 0.94, 1, 1)
+shader_parameter/warm_color = Color(0.92, 0.8, 0.58, 1)
+shader_parameter/density = 0.012
+shader_parameter/twinkle_speed = 0.3
+shader_parameter/glint_alpha = 0.55
+shader_parameter/glint_len_near = 2.0
+shader_parameter/glint_len_far = 5.0
+shader_parameter/night_visibility = 0.3
+shader_parameter/column_chance = 0.3
+shader_parameter/column_sigma_near = 3.0
+shader_parameter/column_sigma_far = 8.0
 
 [node name="Background" type="Node2D" unique_id=2041534355]
 
@@ -74,3 +106,80 @@ repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D8" unique_id=1220006870]
 texture = ExtResource("8_ps3vh")
+
+
+[node name="Reflect_Trees_4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.15, 0.15)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Reflect_Trees_4"]
+material = SubResource("ShaderMaterial_reflect")
+texture_filter = 1
+position = Vector2(0, -34)
+scale = Vector2(1, -1)
+texture = ExtResource("3_fwrf6")
+
+[node name="Reflect_Trees_3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Reflect_Trees_3"]
+material = SubResource("ShaderMaterial_reflect")
+texture_filter = 1
+position = Vector2(0, -34)
+scale = Vector2(1, -1)
+texture = ExtResource("4_5txi7")
+
+[node name="Reflect_Trees_2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.45, 0.45)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Reflect_Trees_2"]
+material = SubResource("ShaderMaterial_reflect")
+texture_filter = 1
+position = Vector2(0, -34)
+scale = Vector2(1, -1)
+texture = ExtResource("5_866lp")
+
+[node name="Reflect_Trees_1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Reflect_Trees_1"]
+material = SubResource("ShaderMaterial_reflect")
+texture_filter = 1
+position = Vector2(0, -34)
+scale = Vector2(1, -1)
+texture = ExtResource("6_43vpv")
+
+[node name="Reflect_Grass" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Reflect_Grass"]
+material = SubResource("ShaderMaterial_reflect")
+texture_filter = 1
+position = Vector2(0, -34)
+scale = Vector2(1, -1)
+texture = ExtResource("7_47vcq")
+
+
+[node name="ShimmerLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 1.01)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Shimmer" type="ColorRect" parent="ShimmerLayer"]
+material = SubResource("ShaderMaterial_shimmer")
+layout_mode = 0
+offset_left = -192.0
+offset_top = -17.0
+offset_right = 192.0
+offset_bottom = 108.0
+mouse_filter = 2
+script = ExtResource("11_shimmerscript")
