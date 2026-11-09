@@ -7,7 +7,8 @@ var player: Player
 # If true, a fish can only be fished for when the equipped rod is strong enough
 # (uses FishingRod.can_catch). Off by default so every fish can be clicked.
 @export var enforce_rod_rarity: bool = false
- 
+var buoy: Node2D 
+
 # Sets name for fish scene paths
 var fishes: Dictionary = {
 	"bass": {"scene": "res://src/gameplay/fishing/fish/bass_swimming.tscn",
@@ -56,19 +57,28 @@ func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	fish_spawned.append(fish)
 	return fish
  
-func pick_weighted_fish() -> String:
+func pick_weighted_fish(zone: int) -> String:
 	var weights := PackedFloat32Array()
 	for key in fish_keys:
-		weights.append(fishes[key]["data"].spawn_weight)
+		var data = fishes[key]["data"]
+		weights.append(data.spawn_weight if data.min_zone <= zone else 0)
 	return fish_keys[rng.rand_weighted(weights)]
 
 # Timer runs and spawns random fish on left or right every 5 seconds
 func _on_timer_timeout() -> void:
 	var sides = [-1, 1]
 	var side = sides.pick_random()
-	var fish_to_spawn = pick_weighted_fish()
+	var fish_to_spawn = pick_weighted_fish(get_zone())
 	spawn_fish(fish_to_spawn, player.position.x+(SPAWN_DISTANCE*side) , 150)
  
+func get_zone() -> int:
+	var b_dict = buoy.buoys
+	var zone = 0
+	var player_x = player.position.x
+	for b in b_dict:
+		if player_x > b_dict[b]['left'].position.x and player_x < b_dict[b]['right'].position.x:
+			return b
+	return b_dict.amount
  
 # --- Fishing minigame ---
  

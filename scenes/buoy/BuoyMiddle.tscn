@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://be6y2nplkapas"]
+
+[ext_resource type="Script" uid="uid://b0wolv1tdrnds" path="res://scripts/bouy/buoy_middle.gd" id="1_cjeas"]
+
+[node name="BuoyMiddle" type="Node2D" unique_id=133565324]
+script = ExtResource("1_cjeas")
+distance = 400
