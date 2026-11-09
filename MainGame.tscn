@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cfwkhwh08tk1i"]
 
+[ext_resource type="Script" uid="uid://c8vosit064pec" path="res://scripts/fireflies.gd" id="1_3tbxw"]
+
 [node name="MainGame" type="Node" unique_id=1052508565]
 
 [node name="Systems" type="Node" parent="." unique_id=277018442]
@@ -11,6 +13,10 @@
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=1573071476]
 
 [node name="EffectRoot" type="Node2D" parent="World" unique_id=2047208407]
+
+[node name="Fireflies" type="Node2D" parent="World/EffectRoot" unique_id=774144042]
+script = ExtResource("1_3tbxw")
+force_night = true
 
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=559595723]
 
