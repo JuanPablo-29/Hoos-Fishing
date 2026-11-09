@@ -1,6 +1,6 @@
 class_name Manager
 extends Node
-
+ 
 # Reference to player, set from main_game.gd
 var player: Player
 @export var timer: Timer
@@ -27,13 +27,19 @@ var fish_spawned: Array[SwimmingFish] = []
 const SPAWN_DISTANCE = 250
 const MINIGAME_SCENE: PackedScene = preload("res://scenes/FishingMinigame.tscn")
  
+# Sound effects
+const SFX_HOOKED: AudioStream = preload("res://assets/audio/water_splash.mp3")   # fish first hooked
+const SFX_CAUGHT: AudioStream = preload("res://assets/audio/ding.mp3")           # fish caught
+const SFX_FAILED: AudioStream = preload("res://assets/audio/bone_break.mp3")     # fish got away
+@export_range(-30.0, 6.0) var sfx_volume_db: float = 0.0
+ 
 # The minigame currently on screen (null when not fishing) and the fish it's for
 var minigame: Node2D = null
 var hooked_fish: SwimmingFish = null
  
 # Random Number Generator
 var rng := RandomNumberGenerator.new()
-
+ 
 # Called when the node enters the scene tree for the first time.
 func spawn_initial_fish() -> void:
 	### Spawns fishes
@@ -65,7 +71,7 @@ func pick_weighted_fish(zone: int) -> String:
 		var data = fishes[key]["data"]
 		weights.append(data.spawn_weight if data.min_zone <= zone else 0)
 	return fish_keys[rng.rand_weighted(weights)]
-
+ 
 # Timer runs and spawns random fish on left or right every 5 seconds
 func _on_timer_timeout() -> void:
 	var sides = [-1, 1]
@@ -101,6 +107,7 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
  
 	fish.hook()
 	hooked_fish = fish
+	_play_sfx(SFX_HOOKED)
  
 	# Instantiate manually (instead of SceneLoader.spawn) so auto_start can be turned off
 	# before the minigame's _ready() runs.
@@ -150,6 +157,7 @@ func _on_minigame_finished(success: bool) -> void:
 		_catch_fish(fish)
 	else:
 		print("The %s swam away..." % fish.fish_data.fish_name)
+		_play_sfx(SFX_FAILED)
 		player.task_board.record_failure()
 		fish.flee()
  
@@ -159,12 +167,24 @@ func _catch_fish(fish: SwimmingFish) -> void:
 	if added == 0:
 		# All hotbar slots are taken by other items
 		print("Inventory full! The %s got away." % fish.fish_data.fish_name)
+		_play_sfx(SFX_FAILED)
 		player.task_board.record_failure()
 		fish.flee()
 		return
 	
 	# Count the fish only after it successfully enters inventory.
 	player.catch_tracker.record_catch(fish.fish_data)
-
+ 
 	print("Caught a %s!" % fish.fish_data.fish_name)
+	_play_sfx(SFX_CAUGHT)
 	fish.queue_free()
+ 
+ 
+# Fire-and-forget sound effect: makes a player, plays it, and cleans it up when it ends.
+func _play_sfx(stream: AudioStream) -> void:
+	var sfx := AudioStreamPlayer.new()
+	sfx.stream = stream
+	sfx.volume_db = sfx_volume_db
+	add_child(sfx)
+	sfx.finished.connect(sfx.queue_free)
+	sfx.play()
