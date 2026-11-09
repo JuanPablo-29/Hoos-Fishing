@@ -1,4 +1,3 @@
-
 class_name Player
 extends CharacterBody2D
 
@@ -24,6 +23,8 @@ class ItemData:
 var current_item: ItemData
 
 @onready var sprite: AnimatedSprite2D = $Sprite2D
+const BoatRigScript := preload("res://scripts/boat_rig.gd")
+@onready var boat_rig: BoatRigScript = $BoatRig
 
 func _ready() -> void:
 	# Each stored catch is reported to the task board once
@@ -62,6 +63,7 @@ func _physics_process(delta) -> void:
 func update_animation() -> void:
 	if direction.x != 0:
 		sprite.flip_h = direction.x < 0
+		boat_rig.set_facing_left(direction.x < 0)
 
 	if direction != Vector2.ZERO:
 		sprite.play("fly")

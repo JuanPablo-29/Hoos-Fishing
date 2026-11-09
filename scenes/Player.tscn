@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3t74xir3luqf"]
+[gd_scene load_steps=13 format=3 uid="uid://b3t74xir3luqf"]
 
 [ext_resource type="Script" uid="uid://bwoloisp2i71q" path="res://scripts/hoo.gd" id="1_bvoaa"]
 [ext_resource type="Texture2D" uid="uid://bdlhh4jwtsypw" path="res://assets/Hoo/hoo2.png" id="2_mdl7e"]
 [ext_resource type="Texture2D" uid="uid://dv2w3rnvwpt2j" path="res://assets/Hoo/hoo3.png" id="3_qu4a1"]
 [ext_resource type="Texture2D" uid="uid://ctvlhv1gnimy3" path="res://assets/Hoo/hoo1.png" id="4_70d11"]
+
+[ext_resource type="Script" path="res://scripts/boat_rig.gd" id="5_boatrig"]
+[ext_resource type="Texture2D" path="res://assets/Boat/boat_hull.png" id="6_hull"]
+[ext_resource type="Texture2D" path="res://assets/Boat/lantern_arm.png" id="7_arm"]
+[ext_resource type="Texture2D" path="res://assets/Boat/lantern.png" id="8_lantern"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4xcp8"]
 radius = 24.755169
@@ -31,6 +36,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_lantern"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.3, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lantern"]
+gradient = SubResource("Gradient_lantern")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Hoo" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(1, 1)
@@ -49,3 +66,39 @@ sprite_frames = SubResource("SpriteFrames_w0pb2")
 animation = &"fly"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BoatRig" type="Node2D" parent="." node_paths=PackedStringArray("passenger")]
+scale = Vector2(2, 2)
+script = ExtResource("5_boatrig")
+passenger = NodePath("../Sprite2D")
+
+[node name="LanternPost" type="Sprite2D" parent="BoatRig"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-3, -35)
+texture = ExtResource("7_arm")
+centered = false
+
+[node name="LanternPivot" type="Node2D" parent="BoatRig"]
+z_index = -1
+position = Vector2(2, -30)
+
+[node name="Lantern" type="Sprite2D" parent="BoatRig/LanternPivot"]
+texture_filter = 1
+position = Vector2(-4, 0)
+texture = ExtResource("8_lantern")
+centered = false
+
+[node name="Light" type="PointLight2D" parent="BoatRig/LanternPivot"]
+position = Vector2(0, 9)
+color = Color(1, 0.72, 0.38, 1)
+energy = 1.0
+texture = SubResource("GradientTexture2D_lantern")
+texture_scale = 0.8
+
+[node name="Hull" type="Sprite2D" parent="BoatRig"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-25, 5)
+texture = ExtResource("6_hull")
+centered = false
