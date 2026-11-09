@@ -34,3 +34,8 @@ func _ready() -> void:
 	var shop = SceneLoader.spawn("res://scenes/ShopKeeper.tscn", "Level")
 	shop.player = player
 	shop.position = Vector2(200,115)
+	
+	var buoy_middle = SceneLoader.spawn("res://scenes/buoy/BuoyMiddle.tscn", "Level")
+	buoy_middle.set_offset(shop.position)
+	buoy_middle.set_bounds()
+	

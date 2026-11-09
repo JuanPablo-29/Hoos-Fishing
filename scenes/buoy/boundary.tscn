@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cayoj1jk13r17"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s6527"]
+
+[node name="Boundary" type="StaticBody2D" unique_id=24472625]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005272186]
+shape = SubResource("WorldBoundaryShape2D_s6527")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=997260763]
+offset_left = 34.0
+offset_top = -20.0
+offset_right = 74.0
+offset_bottom = 51.0
+rotation = 1.5707964
