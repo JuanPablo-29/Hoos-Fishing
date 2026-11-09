@@ -3,6 +3,7 @@ extends Node2D
 @export var distance:=300
 @export var amount := 2
 var offset := Vector2(0,0)
+var buoys:= {}
 
 func set_offset(pos: Vector2):
 	offset.x = pos.x
@@ -23,7 +24,12 @@ func set_bounds() -> void:
 		
 		b_right.rotation_degrees = -90
 		b_right.position = pos_right
+		buoys[i] = {"left":b_left,
+					"right": b_right}
 
+func remove_buoy(b: int):
+	buoys[b]['left'].remove()
+	buoys[b]['right'].remove()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

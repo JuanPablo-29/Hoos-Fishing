@@ -38,4 +38,4 @@ func _ready() -> void:
 	var buoy_middle = SceneLoader.spawn("res://scenes/buoy/BuoyMiddle.tscn", "Level")
 	buoy_middle.set_offset(shop.position)
 	buoy_middle.set_bounds()
-	
+	fish_manager.buoy = buoy_middle

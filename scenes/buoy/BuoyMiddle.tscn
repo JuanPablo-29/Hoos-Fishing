@@ -4,3 +4,4 @@
 
 [node name="BuoyMiddle" type="Node2D" unique_id=133565324]
 script = ExtResource("1_cjeas")
+distance = 400
