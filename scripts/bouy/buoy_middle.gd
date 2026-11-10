@@ -20,10 +20,10 @@ func set_bounds() -> void:
 		var b_left = SceneLoader.spawn("res://scenes/buoy/boundary.tscn", "Level")
 		var b_right = SceneLoader.spawn("res://scenes/buoy/boundary.tscn", "Level")
 		
-		b_left.rotation_degrees = 90
+		b_left.change_rotation(90)
 		b_left.position = pos_left
 		
-		b_right.rotation_degrees = -90
+		b_right.change_rotation(-90)
 		b_right.position = pos_right
 		buoys[i] = {"left":b_left,
 					"right": b_right}

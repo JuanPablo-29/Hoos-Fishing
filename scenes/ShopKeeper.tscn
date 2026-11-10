@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dsr627scg5q3y"]
 
 [ext_resource type="Script" uid="uid://hx7503fk6avr" path="res://scripts/shop_keeper.gd" id="1_73s61"]
+[ext_resource type="Texture2D" uid="uid://dfetw1q5qla06" path="res://assets/Environment/shop_cat.png" id="2_g7cxp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_73s61"]
 
@@ -12,33 +13,28 @@ pressed = true
 events = [SubResource("InputEventAction_73s61")]
 
 [node name="ShopKeeper" type="Node2D" unique_id=1992022560 node_paths=PackedStringArray("sprite", "button")]
+position = Vector2(0, -1)
 script = ExtResource("1_73s61")
 sprite = NodePath("ColorRect")
 button = NodePath("ColorRect/Button")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1332008489]
-offset_left = -21.0
-offset_top = -54.0
-offset_right = 19.0
-offset_bottom = 21.0
-color = Color(0.6967761, 0.19364676, 0, 1)
-
-[node name="Label" type="Label" parent="ColorRect" unique_id=1818018908]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Shop"
+[node name="ColorRect" type="Sprite2D" parent="." unique_id=849333589]
+z_index = 1
+texture_filter = 1
+position = Vector2(1, -32)
+scale = Vector2(1.96, 1.96)
+texture = ExtResource("2_g7cxp")
 
 [node name="Button" type="Button" parent="ColorRect" unique_id=2114277508]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 52.0
-offset_bottom = 71.0
+z_index = -1
+offset_left = -25.0
+offset_top = -36.0
+offset_right = 25.0
+offset_bottom = 33.0
 focus_mode = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_73s61")
 shortcut = SubResource("Shortcut_g7cxp")
 shortcut_in_tooltip = false
-text = "press"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
