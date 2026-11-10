@@ -25,6 +25,7 @@ unique_name_in_owner = true
 position = Vector2(191, 109)
 
 [node name="Hoo" parent="World/LevelRoot" unique_id=354010857 node_paths=PackedStringArray("wallet_ui") instance=ExtResource("1_hat22")]
+z_index = 2
 position = Vector2(288, 109)
 wallet_ui = NodePath("../../../HudLayer/HudRoot/WalletUi")
 

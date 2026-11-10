@@ -14,6 +14,7 @@ script = ExtResource("1_kchd2")
 shape = SubResource("WorldBoundaryShape2D_s6527")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1329140580]
+z_index = 1
 texture_filter = 1
 position = Vector2(8.34465e-07, 7.0000014)
 scale = Vector2(1.9863937, 1.9863937)
