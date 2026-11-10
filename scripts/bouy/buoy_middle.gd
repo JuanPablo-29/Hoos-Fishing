@@ -12,10 +12,11 @@ func set_offset(pos: Vector2):
 
 # Called when the node enters the scene tree for the first time.
 func set_bounds() -> void:
+	var space = 0
 	for i in range(1, amount+1):
-		var pos_left = Vector2(-distance * i, 0) + offset
-		var pos_right = Vector2(distance * i, 0) + offset
-		print(offset)
+		if i > 1: space = distance * 0.5
+		var pos_left = Vector2(-distance * i - space, 0) + offset
+		var pos_right = Vector2(distance * i + space, 0) + offset
 		var b_left = SceneLoader.spawn("res://scenes/buoy/boundary.tscn", "Level")
 		var b_right = SceneLoader.spawn("res://scenes/buoy/boundary.tscn", "Level")
 		
