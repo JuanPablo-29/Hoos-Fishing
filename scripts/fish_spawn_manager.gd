@@ -86,7 +86,7 @@ func get_zone() -> int:
 	for b in b_dict:
 		if player_x > b_dict[b]['left'].position.x and player_x < b_dict[b]['right'].position.x:
 			return b
-	return b_dict.amount
+	return b_dict.size()
  
 # --- Fishing minigame ---
  
@@ -170,7 +170,7 @@ func _catch_fish(fish: SwimmingFish) -> void:
 		_play_sfx(SFX_FAILED)
 		player.task_board.record_failure()
 		fish.flee()
-		return
+		return 
 	
 	# Count the fish only after it successfully enters inventory.
 	player.catch_tracker.record_catch(fish.fish_data)
