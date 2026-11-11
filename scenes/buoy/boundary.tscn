@@ -1,19 +1,21 @@
 [gd_scene format=3 uid="uid://cayoj1jk13r17"]
 
 [ext_resource type="Script" uid="uid://co5s4trp2egp7" path="res://scripts/bouy/boundary.gd" id="1_kchd2"]
+[ext_resource type="Texture2D" uid="uid://bb2u1g4jvkjxe" path="res://assets/Environment/buoy.png" id="2_dsoem"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s6527"]
 
 [node name="Boundary" type="StaticBody2D" unique_id=24472625]
+z_index = 2
 collision_mask = 2
 script = ExtResource("1_kchd2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005272186]
 shape = SubResource("WorldBoundaryShape2D_s6527")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=997260763]
-offset_left = 34.0
-offset_top = -20.0
-offset_right = 74.0
-offset_bottom = 51.0
-rotation = 1.5707964
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1329140580]
+z_index = 1
+texture_filter = 1
+position = Vector2(8.34465e-07, 7.0000014)
+scale = Vector2(1.9863937, 1.9863937)
+texture = ExtResource("2_dsoem")

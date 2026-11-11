@@ -73,7 +73,6 @@ script = ExtResource("5_boatrig")
 passenger = NodePath("../Sprite2D")
 
 [node name="LanternPost" type="Sprite2D" parent="BoatRig" unique_id=1114417377]
-z_index = -1
 texture_filter = 1
 position = Vector2(-3, -35)
 texture = ExtResource("7_arm")
@@ -84,6 +83,7 @@ z_index = -1
 position = Vector2(2, -30)
 
 [node name="Lantern" type="Sprite2D" parent="BoatRig/LanternPivot" unique_id=975631603]
+z_index = 1
 texture_filter = 1
 position = Vector2(-4, 0)
 texture = ExtResource("8_lantern")

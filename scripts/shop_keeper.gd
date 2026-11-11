@@ -1,7 +1,7 @@
 
 extends Node2D
 var player: Player
-@export var sprite: ColorRect
+@export var sprite: Sprite2D
 @export var button: Button
 var close_enough: bool = false
 var shop_ui: Control
@@ -17,10 +17,10 @@ const BOAT_PRICES := [200, 500]
 func _process(delta: float) -> void:
 	var distance = global_position.distance_to(player.global_position)
 	if distance <= 70:
-		sprite.color = Color.BEIGE
+		#sprite.color = Color.BEIGE
 		close_enough = true
 	else:
-		sprite.color = Color.BROWN
+		#sprite.color = Color.BROWN
 		close_enough = false
 
 	# Disable the shop button when the player is too far away or fishing
