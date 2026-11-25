@@ -4,6 +4,7 @@ extends Node
 # Reference to player, set from main_game.gd
 var player: Player
 @export var timer: Timer
+var base_spawn_interval: float = 0.0
 # If true, a fish can only be fished for when the equipped rod is strong enough
 # (uses FishingRod.can_catch). Off by default so every fish can be clicked.
 @export var enforce_rod_rarity: bool = false
@@ -65,20 +66,44 @@ func spawn_fish(fish_type: String, x = 0, y = 0) -> SwimmingFish:
 	fish_spawned.append(fish)
 	return fish
  
+
 func pick_weighted_fish(zone: int) -> String:
 	var weights := PackedFloat32Array()
+
 	for key in fish_keys:
 		var data = fishes[key]["data"]
-		weights.append(data.spawn_weight if data.min_zone <= zone else 0)
+
+		# Preserve existing zone restrictions
+		if data.min_zone > zone:
+			weights.append(0.0)
+			continue
+
+		var weight: float = data.spawn_weight
+
+		# Lure increases rare fish spawn weight
+		if data.rarity == Fish.Rarity.THREE_STAR:
+			weight *= player.tackle.get_rare_fish_multiplier()
+
+		weights.append(weight)
+
 	return fish_keys[rng.rand_weighted(weights)]
  
 # Timer runs and spawns random fish on left or right every 5 seconds
+
 func _on_timer_timeout() -> void:
+	# Store the original spawn interval once
+	if base_spawn_interval <= 0.0:
+		base_spawn_interval = timer.wait_time
+
+	# Apply the chum spawn frequency bonus
+	var multiplier: float = player.tackle.get_spawn_rate_multiplier()
+	timer.wait_time = base_spawn_interval / multiplier
+
 	var sides = [-1, 1]
 	var side = sides.pick_random()
 	var fish_to_spawn = pick_weighted_fish(get_zone())
-	spawn_fish(fish_to_spawn, player.position.x+(SPAWN_DISTANCE*side) , 150)
- 
+	spawn_fish(fish_to_spawn, player.position.x + (SPAWN_DISTANCE * side), 150)
+
 func get_zone() -> int:
 	var b_dict = buoy.buoys
 	var zone = 0
@@ -124,20 +149,24 @@ func _on_fish_clicked(fish: SwimmingFish) -> void:
 		minigame.scale = Vector2(2.2, 2.2)
 		minigame.position = Vector2(80, 30)
  
+	
+
 	# Better rods increase catch speed and make the catch zone larger
 	if rod != null:
 		if "catch_gain" in minigame:
 			minigame.catch_gain *= rod.catch_speed_multiplier
 			minigame.catch_zone_multiplier = rod.catch_zone_multiplier
- 
-	# Fish.catch_difficulty runs 1.0 (bluegill) to 3.0 (golden trout);
-	# map that to the minigame's 0..1 difficulty scale.
+
+	# Bait increases catch progress
+	if "catch_gain" in minigame:
+		minigame.catch_gain *= player.tackle.get_catch_speed_multiplier()
+
+	# Fish difficulty
 	var difficulty: float = remap(fish.fish_data.catch_difficulty, 1.0, 3.0, 0.2, 0.8)
- 
+
 	minigame.finished.connect(_on_minigame_finished)
 	minigame.start(clampf(difficulty, 0.0, 1.0))
 	player.is_fishing = true
- 
  
 func _on_minigame_finished(success: bool) -> void:
 	var fish: SwimmingFish = hooked_fish

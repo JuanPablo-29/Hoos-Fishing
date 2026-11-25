@@ -64,6 +64,13 @@ func _on_button_pressed() -> void:
 		# Connect boat button
 		shop_ui.get_node("ColorRect/Tabs/Boat/Upgrade").pressed.connect(_on_boat_upgrade_pressed)
 		_refresh_boat_page()
+		
+		# Connect tackle purchase buttons
+		shop_ui.get_node("ColorRect/Tabs/Tackle/Bait").pressed.connect(_on_bait_buy_pressed)
+		shop_ui.get_node("ColorRect/Tabs/Tackle/Chum").pressed.connect(_on_chum_buy_pressed)
+		shop_ui.get_node("ColorRect/Tabs/Tackle/Lure").pressed.connect(_on_lure_buy_pressed)
+		_refresh_tackle_page()
+
 	if !shop_ui:
 		shop_ui = SceneLoader.spawn(shop_ui_path, "Hud")
 		shop_ui.get_node("Tabs/Shop/Buy").pressed.connect(_on_buy_pressed)
@@ -278,3 +285,55 @@ func _on_boat_upgrade_pressed() -> void:
 	buoy.remove_buoy(player.boat_level)   # opens the next pair
 	result.text = "Boat upgraded!"
 	_refresh_boat_page()
+	
+# Purchase bait
+func _on_bait_buy_pressed() -> void:
+	if player.tackle.buy_bait(player.wallet):
+		_show_tackle_result("Bait purchased!", true)
+	else:
+		_show_tackle_result("Unable to purchase bait.", false)
+
+	_refresh_tackle_page()
+
+
+# Purchase chum
+func _on_chum_buy_pressed() -> void:
+	if player.tackle.buy_chum(player.wallet):
+		_show_tackle_result("Chum purchased!", true)
+	else:
+		_show_tackle_result("Unable to purchase chum.", false)
+
+	_refresh_tackle_page()
+
+
+# Purchase lure
+func _on_lure_buy_pressed() -> void:
+	if player.tackle.buy_lure(player.wallet):
+		_show_tackle_result("Lure purchased!", true)
+	else:
+		_show_tackle_result("Unable to purchase lure.", false)
+
+	_refresh_tackle_page()
+
+# Display tackle purchase results
+func _show_tackle_result(message: String, success: bool) -> void:
+	var result: Label = shop_ui.get_node("ColorRect/Tabs/Tackle/Result")
+
+	result.text = message
+	result.add_theme_color_override("font_color", Color.GREEN if success else Color.RED)
+	
+# Refresh tackle ownership and button states
+func _refresh_tackle_page() -> void:
+	var page = shop_ui.get_node("ColorRect/Tabs/Tackle")
+
+	var bait: Button = page.get_node("Bait")
+	var chum: Button = page.get_node("Chum")
+	var lure: Button = page.get_node("Lure")
+
+	bait.disabled = player.tackle.has_bait
+	chum.disabled = player.tackle.has_chum
+	lure.disabled = player.tackle.has_lure
+
+	bait.text = "Bait - Owned" if player.tackle.has_bait else "Bait - $100 (+15% catch speed)"
+	chum.text = "Chum - Owned" if player.tackle.has_chum else "Chum - $200 (+25% spawn rate)"
+	lure.text = "Lure - Owned" if player.tackle.has_lure else "Lure - $350 (+50% rare weight)"
