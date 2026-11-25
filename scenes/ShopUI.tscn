@@ -185,6 +185,56 @@ layout_mode = 2
 [node name="Result" type="Label" parent="ColorRect/Tabs/Boat" unique_id=1066737358]
 layout_mode = 2
 
+[node name="Tackle" type="VBoxContainer" parent="ColorRect/Tabs" unique_id=679941478]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+metadata/_tab_index = 3
+
+[node name="Description" type="Label" parent="ColorRect/Tabs/Tackle" unique_id=2133890453]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 9
+text = "Purchase tackle upgrades"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Bait" type="Button" parent="ColorRect/Tabs/Tackle" unique_id=707110416]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("ShopButton")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "Bait - $100 (+15% catch speed)"
+
+[node name="Chum" type="Button" parent="ColorRect/Tabs/Tackle" unique_id=1386590013]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("ShopButton")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+action_mode = 0
+text = "Chum - $200 (+25% spawn rate)"
+
+[node name="Lure" type="Button" parent="ColorRect/Tabs/Tackle" unique_id=1906007393]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("ShopButton")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qq7pr")
+text = "Lure - $350 (+50% rare weight)"
+
+[node name="Result" type="Label" parent="ColorRect/Tabs/Tackle" unique_id=1184384985]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [node name="Close" type="Button" parent="." unique_id=1621520780]
 layout_mode = 1
 anchors_preset = 1

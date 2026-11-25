@@ -15,6 +15,7 @@ var is_shopping := false
 var inventory := PlayerInventory.new()
 var catch_tracker := CatchTracker.new()
 var task_board := TaskBoard.new()
+var tackle := PlayerTackle.new()
 var equipped_rod: FishingRod
 
 class ItemData:
